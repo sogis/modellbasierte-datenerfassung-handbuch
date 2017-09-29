@@ -1,5 +1,8 @@
 Einleitung
 ==========
+
+do not forget: was ist master? -> eigentlich uml. heute muss halt noch header gefrickelt werden, aber nicht bissle hier und bissle dort..do not forget: was ist master? -> eigentlich uml. heute muss halt noch header gefrickelt werden, aber nicht bissle hier und bissle dort....
+
 Das Modellierungshandbuch dient der Erstellung von kantonalen (minimalen) Geodatenmodellen.
 Dabei muss es sich nicht nur um Geodatenmodelle gemäss KGeoIV handeln, sondern im Kontext des
 modellbasierten Ansatzes (aka model-driven GDI) sollen diese Modellierungsregeln bewusst auch bei
