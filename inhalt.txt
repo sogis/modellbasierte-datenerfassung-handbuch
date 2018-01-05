@@ -1,0 +1,9 @@
+* Einleitung (bla bla bla. Leitfaden, Richtschnur. Abweichungen darf es geben. müssen aber begründet werden können und bewusst gemacht werden. Wichtig sind gute Modelle, welche die gestellte Aufgabe erfüllen und nachhaltig sind. )
+* Modelltypen (Erfassung, Publikation, Validierung -> siehe auch Präsentation)
+* Modellierungsprozess (also Ablauf)
+* Modelldokumentation und Ablage 
+* Werkzeuge
+* Modellierungsregeln (eigentliche Modellierungsregeln)
+* Integrationsprozess (Grundsatz und Modelländerunge (siehe Olivers Ablaufschema), Prosa und Skizze): wie weit? Ticket lösen mit Befehl und nötigen Informationen (Ah und Comment on schema mit Ansprechspersonen)
+* Historisierung / Archivierung (Histor. nicht im Modell, Archivierung in XTF, Projekt "Rückblick")
+* Publikation und Ablage der Modelle (UML ist Master)

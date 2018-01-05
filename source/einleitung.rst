@@ -1,46 +1,10 @@
 Einleitung
 ==========
 
-do not forget: was ist master? -> eigentlich uml. heute muss halt noch header gefrickelt werden, aber nicht bissle hier und bissle dort..do not forget: was ist master? -> eigentlich uml. heute muss halt noch header gefrickelt werden, aber nicht bissle hier und bissle dort....
+Das Handbuch «Modellbasierte Datenerfassung» ist ein Hilfsmittel für das Arbeiten mit INTERLIS-Datenmodellen in der kantonalen Geodateninfrastruktur. Es ist entstanden aus den ursprünglichen Modellierungsregeln, umfasst in der heutigen Form aber mehr. Es behandelt in der jetzigen Form auch vor- und nachgelagerte Themen wie die Modellablage oder Integrations- und Nachführungsprozesse.
 
-Das Modellierungshandbuch dient der Erstellung von kantonalen (minimalen) Geodatenmodellen.
-Dabei muss es sich nicht nur um Geodatenmodelle gemäss KGeoIV handeln, sondern im Kontext des
-modellbasierten Ansatzes (aka model-driven GDI) sollen diese Modellierungsregeln bewusst auch bei
-allen anderen konzeptionellen Datenmodellen angewendet werden.
+Abweichung zu den vorliegenden minimalen Vorgaben sind natürlich erlaubt. Zudem das Handbuch nie sämtliche allumfassend sein kann. Abweichung müssen jedoch bewusst gemacht werden und begründbar sein.
 
-Die Modellierungsregeln sind minimal gehalten und können im Laufe der Zeit ändern.
+Auch können die Vorgaben im Verlauf der Zeit ändern und ergänzt werden. 
 
-Weitere wichtige Informationen zum Modellierungsprozess und zu Formalitäten finden sich im
-Dokument «Allgemeine Empfehlungen zur Methodik der Definition ‹minimaler Geodatenmodell›».
-
-
-Modellierungssprache / Compiler
--------------------------------
-+-----------------------------------------+-----------------------------------------+
-| Beschreibung                            | Hinweis / Beispiel                      |
-+-----------------------------------------+-----------------------------------------+
-
-
-+--------------+---------------------+
-| Beschreibung | Hinweise / Beispiel |
-+==============+=====================+
-|              |                     |
-+--------------+---------------------+
-|              |                     |
-+--------------+---------------------+
-|              |                     |
-+--------------+---------------------+
-
-+----------------------------------------------------------------------------------------+------------------------------------------------+
-| Beschreibung                                                                           | Hinweise / Beispiel                            |
-+----------------------------------------------------------------------------------------+------------------------------------------------+
-| Modellierungssprache ist INTERLIS 2.3 gemäss Referenzhandbuch vom 13. April 2006.      |                                                |
-+----------------------------------------------------------------------------------------+------------------------------------------------+
-| Für die Kontrolle der Datenmodelle wird der INTERLIS-Compiler Version 4.5.22 vom       | MODEL SO_AV_Nachfuehrungskreise_20160521 (de)  |
-| 7. April 2016 (oder höher) eingesetzt.                                                 | AT „http://geo.so.ch/models/AGI“               |
-+----------------------------------------------------------------------------------------+------------------------------------------------+
-| Die verwendete Compiler-Version ist im Modell-Header anzugeben.                        | !! Compiler-Version =„4.5.22-20160407“;        |
-+----------------------------------------------------------------------------------------+------------------------------------------------+
-| Der Namensraum für Modelle ist *http://geo.so.ch/models/AMT* wobei das entsprechende   |                                                |
-| Amt resp. der Ordner in der Modellablage, in welchem das Modell liegt, angegeben wird. |                                                |
-+----------------------------------------------------------------------------------------+------------------------------------------------+
+Das Handbuch ist ebenfalls keine Klickanleitung für eingesetzte Tools.

@@ -53,7 +53,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Modellbasierte Datenerfassung - Handbuch'
-copyright = u'2017, Amt für Geoinformatin Kanton Solothurn'
+copyright = u'2017, Amt für Geoinformation Kanton Solothurn'
 author = u'Stefan Ziegler'
 
 # The version info for the project you're documenting, acts as replacement for
