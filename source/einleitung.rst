@@ -5,6 +5,6 @@ Das Handbuch «Modellbasierte Datenerfassung» ist ein Hilfsmittel für das Arbe
 
 Abweichung zu den vorliegenden minimalen Vorgaben sind natürlich erlaubt. Zudem das Handbuch nie sämtliche allumfassend sein kann. Abweichung müssen jedoch bewusst gemacht werden und begründbar sein.
 
-Auch können die Vorgaben im Verlauf der Zeit ändern und ergänzt werden. 
-
 Das Handbuch ist ebenfalls keine Klickanleitung für eingesetzte Tools.
+
+Die Vorgaben im Verlauf der Zeit ändern und ergänzt werden. Änderungswünsche, Ergänzungen, Hinweise auf Fehler/Widersprüche etc. sind an Stefan Ziegler zu richten.
