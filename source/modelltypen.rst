@@ -9,7 +9,7 @@ Erfassungsmodelle dienen der Erfassung und Nachführung von Daten in der Datenba
 
 Publikationsmodell
 ------------------
-Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die Publikation in einem Web GIS oder als «einfacher» Layer in *QGIS*. Die für den Benutzer wichtigen Informationen sind in einem Erfassungsmodell oftmals auf verschiedene Klassen resp. Datenbanktabellen verteilt. Für die reine Darstellung und das einfache Abfragen von Informationen ist ein simpleres Modell – das Publikationsmodell – zu erarbeiten. Hauptmerkmal eines Publikationsmodelles ist der Verzicht auf Beziehungen zwischen den Klassen und dass der Inhalt immer wieder und automatisierbar aus dem Erfassungsmodell und weiteren vorhandenen Daten ableitbar ist.
+Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die Publikation in einem Web GIS oder als «einfacher» Layer in *QGIS*. Die für den Benutzer wichtigen Informationen sind in einem Erfassungsmodell oftmals auf verschiedene Klassen resp. Datenbanktabellen verteilt. Für die reine Darstellung und das einfache Abfragen von Informationen ist ein simpleres Modell – das Publikationsmodell – zu erarbeiten. Hauptmerkmal eines Publikationsmodelles ist der Verzicht auf Beziehungen zwischen den Klassen und dass der Inhalt immer wieder und automatisierbar aus dem Erfassungsmodell und weiteren vorhandener Daten ableitbar ist.
 
 Für eine allfällige Datenabgabe kann sowohl das Erfassungs- und Publikationsmodell zweckdienlich sein.
 

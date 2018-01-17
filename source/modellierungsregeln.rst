@@ -119,3 +119,31 @@ Entwurfsmuster
 *#802*: Allgemeiner Grundsatz: Es wird nur die IST- Situation beschrieben.
 
 *#803*: Für Labelorientierungen etc. wird die Einheit ``Units.Angle_Degree`` verwendet.
+
+Beispielheader
+--------------
+
+::
+
+  INTERLIS 2.3; 
+  !!============================================================================== 
+  !!@ File = "SO_AV_Nachfuehrungskreise_20160521.ili"; 
+  !!@ Title = "AV-Nachführungskreise"; 
+  !!@ shortDescription = "Nachführungskreise der amtlichen Vermessung im Kanton Solothurn"; 
+  !!@ Issuer = "http://www.agi.so.ch"; 
+  !!@ technicalContact = "mailto:agi@bd.so.ch"; 
+  !!@ furtherInformation = "http://models.geo.so.ch/AGI/SO_AV_Nachfuehrungskreise_2016_05_21.pdf"; 
+  !!@ kGeoiV_ID = "SO-1004"; 
+  !!  Erfassungsmodell;
+  !!  Compiler-Version = "4.5.22-20160407"; 
+  !!------------------------------------------------------------------------------ 
+  !! Version    | wer | Änderung 
+  !!------------------------------------------------------------------------------ 
+  !! 2016-02-11 | P1  | Erstfassung 
+  !! 2016-05-21 | P2  | Finalisierung und Abschluss 
+  !!============================================================================== 
+  MODEL SO_AV_Nachfuehrungskreise_20160521(de) 
+    AT "http://geo.so.ch/models/AGI" 
+    VERSION "2016-05-21" = 
+
+  END SO_AV_Nachfuehrungskreise_20160521.

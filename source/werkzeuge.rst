@@ -16,7 +16,7 @@ Mittels `INTERLIS-Compiler <https://sourceforge.net/projects/umleditor/files/ili
 ili2pg
 ------
 
-`Ili2pg <http://www.eisenhutinformatik.ch/interlis/ili2pg/>`_ erstellt aufgrund eines INTELIS-Modelles ein Schema mit leeren Tabellen in einer PostgreSQL/PostGIS-Datenbank. Es kann auch INTERLIS-Transferdatei importieren oder aus einer Datenbank Daten in eine Transferdatei exportieren.
+`Ili2pg <http://www.eisenhutinformatik.ch/interlis/ili2pg/>`_ erstellt aufgrund eines INTERLIS-Modelles ein Schema mit leeren Tabellen in einer PostgreSQL/PostGIS-Datenbank. Es kann auch INTERLIS-Transferdateien importieren oder aus einer Datenbank Daten in eine Transferdatei exportieren.
 
 Es wird Version XXXXXX (TODO) verwendet.
 
