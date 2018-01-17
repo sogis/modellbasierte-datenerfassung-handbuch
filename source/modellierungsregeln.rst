@@ -18,32 +18,32 @@ Modellname / Version / Formatierung
 
 *#201*: Die Benennung von Modell- und UML- Dateien erfolgt nach folgendem Schema:
 
-  kk_ds_n*_v*.ili/.uml
+  kk_ds_n*_[Publikation|Validierung]_v*.ili/.uml
 
   kk: Kantonskürzel (``SO``)
 
-  ds: Amt / Dienststelle (``AV``)
+  ds: Kürzel Amt / Dienststelle (``AV``)
 
   n*: Sprechender Name des Modells (``Nachfuehrungskreise``)
 
   v*: Version des Modells im Format JJJJMMTT (``20160407``)
 
-  Für den Dateinamen des Validierungsmodells wird dem Dateinamen des zu validierenden Modelles «_Validierung_JJJJMMMTT» angehängt.
+  Für den Dateinamen des Validierungsmodells wird dem Dateinamen des zu validierenden Modelles «Validierung» hinzugefügt und für den Dateinamen des Publikationsmodells «Publikation».
 
 
 *#202*: Die Benennung von Modellen erfolgt nach folgendem Schema:
 
-  kk_n*_v*
+  kk_ds_n*_v*
 
   kk: Kantonskürzel (``SO``)
 
-  ds: Amt / Dienststelle (``AV``)
+  ds: Kürzel Amt / Dienststelle (``AV``)
 
   n*: Sprechender Name des Modells (``Nachfuehrungskreise``)
 
   v*: Version des Modells im Format JJJJMMTT (``20160407``)
 
-  Der Modellnamen des Validierungsmodelles wird analog der Regel für Dateinamen gewählt.
+  Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog der Regel für Dateinamen gewählt.
 
 
 *#203*: Die ID der Geobasisdatensätze muss im Header der Modelldatei eingetragen werden. Kantonale minimale Geodatenmodell gemäss KgeoIV erhalten die offizielle ID gemäss Anhang. Die übrigen Modelle erhalten keine ID. ``!!@ kGeoiV_ID = „SO-1004“;``
@@ -54,11 +54,11 @@ Modellname / Version / Formatierung
 
 *#206*: Für die Formatierung der Modelldateien dürfen keine Tabulatoren verwendet werden.
 
-*#207*: In Kommentaren müssen Umlaute verwendet werden. Dies führt noch zu Problemen beim Import in die Datenbank. Dieses Verhalten wird aber 2018 korrigiert.
+*#207*: In Kommentaren sollen Umlaute verwendet werden. Dies führt momentan aber noch zu Problemen beim Import in die Datenbank (temporäre Lösung: keine Umlaute verwenden). Dieses Verhalten soll aber 2018 korrigiert werden.
 
-*#208*: Im Header der Modelldatei muss der Modelltyp angegeben werden («Erfassungsmodell», «Publikationsmodell», «Validierungsmodell»). Wird neben dem Erfassungsmodell ein zusätzliches Publikationsmodell erstellt, erhält dieses im Dateinamen und im Modellnamen vor dem Datum den Zusatz „Publikation“.
+*#208*: Im Header der Modelldatei muss der Modelltyp angegeben werden («Erfassungsmodell», «Publikationsmodell», «Validierungsmodell»). 
 
-*#209*: Die Version (= Datum) des Modelles ist anzugeben. ``VERSION "2017-01-19"``
+*#209*: Die Version (= Datum) des Modelles ist (via UML-Editor) anzugeben. ``VERSION "2017-01-19"``
 
 *#210*: Jedes Attribut muss mit einem Kommentar versehen werden, welcher das Attribut sinnvoll beschreibt.
 
@@ -67,17 +67,15 @@ Namenskonvention
 
 *#301*: Alle Modellelemente (Modellnamen, Topics, Klassen, Attribute etc.) werden ausschliesslich auf Deutsch bezeichnet.
 
-*#302*: Namen von Topics, Klassen und Assoziationen sollte nicht länger als 29 Zeichen sein.
+*#302*: Namen von Topics, Klassen, Assoziationen und Attributen sollte nicht länger als 29 Zeichen sein.
 
-*#303*: Attributnamen einer Klasse sollten nicht länger als 29 Zeichen sein.
+*#303*: Topic-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Plural.
 
-*#304*: Topic-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Plural.
+*#304*: Klassen-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Singular.
 
-*#305*: Klassen-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Singular.
+*#305*: Attribut-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Singular.
 
-*#306*: Attribut-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Singular.
-
-*#307*: Die Verwendung von reservierten Namen ist nicht erlaubt.
+*#306*: Die Verwendung von reservierten Namen ist nicht erlaubt.
 
 Modellstruktur
 --------------
@@ -91,9 +89,9 @@ Modellstruktur
 Einschränkungen zum Gebrauch von INTERLIS 2.3
 ---------------------------------------------
 
-*#501*: Es dürfen nur zweiwertige (binäre) Beziehungen (ASSOCIATION) deklariert werden.
+*#501*: Es dürfen nur zweiwertige (binäre) Beziehungen (ASSOCIATION) deklariert werden. Was heisst das??????
 
-*#502*: Views dürfen nicht nur in Validierungsmodellen verwendet werden.
+*#502*: Views dürfen nur in Validierungsmodellen verwendet werden.
 
 *#503*: Für ``TEXT`` muss immer eine konkrete Länge angegeben werden.
 
@@ -106,19 +104,21 @@ Konsistenzbedingungen
 
 *#602*: UNIQUE-Bedingungen müssen erfasst werden.
 
-Darstellungsmodell
+*#603*: Als OID wird ``INTERLIS.UUIDOID`` verwendet.
+
+Darstellungsmodell Eigenes Modell??? Taucht vorher nirgends auf.
 ------------------
 
 *#701*: Textpositionen werden nur definiert, wenn diese schwer aus den Daten berechnet werden können oder spezielle Anforderungen an die Darstellung bestehen.
 
-Entwurfsmuster
+*#702*: Für Labelorientierungen etc. wird die Einheit ``Units.Angle_Degree`` verwendet.
+
+Allgemeines
 --------------
 
-*#801*: Als OID wird ``INTERLIS.UUIDOID`` verwendet.
+*#801*: Allgemeiner Grundsatz: Es wird nur die IST-Situation beschrieben. Also weder Archivierung noch Historisierung respektive die dafür benötigten Attribute.
 
-*#802*: Allgemeiner Grundsatz: Es wird nur die IST- Situation beschrieben.
 
-*#803*: Für Labelorientierungen etc. wird die Einheit ``Units.Angle_Degree`` verwendet.
 
 Beispielheader
 --------------

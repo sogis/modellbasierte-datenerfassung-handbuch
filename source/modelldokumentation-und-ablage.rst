@@ -4,13 +4,15 @@ Modelldokumentation und -Ablage
 Dokumentation
 -------------
 
-In der Regel genügt eine Dokumentation im Modell selbst (Bemerkungen zu Topics, Klassen und Attributen). Bei grösseren Modellen und/oder z.B. im Rahmen von Erfassungsrichtlinien ist eine Dokumentation des Modelles in einem zusätzlichen Dokument notwendig. 
+In der Regel genügt eine Dokumentation im Modell selbst (Bemerkungen zu Topics, Klassen und Attributen). Bei grösseren Modellen und/oder z.B. im Rahmen von Erfassungsrichtlinien ist eine Dokumentation des Modelles in einem zusätzlichen Dokument notwendig. Die Vorlage für eine solche Dokumentation findet sich hier: ``H:\BJSVW\Agi\KGDM\Vorlagen\Modelldokumentation_Vorlage_v01.docx``.
 
-Diese Bemerkungen zu Topics, Klasssen und Attributen werden beim Anlegen der Tabellen in der Datenbank übernommen und als Kommentar zu Tabellen und Attributen geführt. Zum jetzigen Zeitpunkt (Januar 2018) werden leider noch die Umlaute falsch gemappt.
+Die Bemerkungen im Modell zu Topics, Klasssen und Attributen werden beim Anlegen der Tabellen in der Datenbank automatisch übernommen und als Kommentar zu Tabellen und Attributen geführt. Zum jetzigen Zeitpunkt (Januar 2018) werden leider noch die Umlaute falsch gemappt. Aus diesem Grund empfiehlt es sich in den Kommentaren keine Umlaute zu verwenden.
 
 Zusätzlich zu den INTERLIS-Objekten muss das Schema in der Datenbank kommentiert werden und falls immer möglich mit Auskunftspersonen (E-Mail-Adressen) hinterlegt werden, z.B.:: 
 
     Dieses Schema wird für die Erfassung der Hoheitsgrenzen verwendet. Fragen: noemi.sturm@bd.so.ch, stefan.ziegler@bd.so.ch.
+    
+Dies erfolgt im DDL-Skript in welchem auch die Rechte auf den Tabellen angepasst werden.
 
 
 Ablage
