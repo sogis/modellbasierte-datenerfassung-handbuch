@@ -142,9 +142,9 @@ Beispielheader
  * !!==============================================================================
  */
   !!@ technicalContact = "mailto:agi@bd.so.ch"; 
-  !!@ furtherInformation = "http://models.geo.so.ch/AGI/SO_AV_Nachfuehrungskreise_2016_05_21.pdf"; 
-  MODEL SO_AV_Nachfuehrungskreise_20160521(de) 
-    AT "http://geo.so.ch/models/AGI" 
-    VERSION "2016-05-21" = 
+  !!@ furtherInformation = "http://geo.so.ch/handbuch/nutzungsplanung"; 
+  MODEL SO_ARP_Nutzungsplanung_20171118(de) 
+    AT "http://geo.so.ch/models/ARP" 
+    VERSION "2017-11-18" = 
 
-  END SO_AV_Nachfuehrungskreise_20160521.
+  END SO_ARP_Nutzungsplanung_20171118.
