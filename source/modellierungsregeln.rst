@@ -45,22 +45,19 @@ Modellname / Version / Formatierung
 
   Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog der Regel für Dateinamen gewählt.
 
+*#203*: Die Metaattribute ``File``, ``Title``, ``shortDescription``, ``Issuer`` und ``technicalContact`` sind im Header der Modelldatei zu erfassen.
 
-*#203*: Die ID der Geobasisdatensätze muss im Header der Modelldatei eingetragen werden. Kantonale minimale Geodatenmodell gemäss KgeoIV erhalten die offizielle ID gemäss Anhang. Die übrigen Modelle erhalten keine ID. ``!!@ kGeoiV_ID = „SO-1004“;``
+*#204*: Die Änderungshistorie wird im Header der Modelldatei dokumentiert.
 
-*#204*: Die Metaattribute ``File``, ``Title``, ``shortDescription``, ``Issuer`` und ``technicalContact`` sind im Header der Modelldatei zu erfassen.
+*#205*: Für die Formatierung der Modelldateien dürfen keine Tabulatoren verwendet werden.
 
-*#205*: Die Änderungshistorie wird im Header der Modelldatei dokumentiert.
+*#206*: In Kommentaren sollen Umlaute verwendet werden. Dies führt momentan aber noch zu Problemen beim Import in die Datenbank (temporäre Lösung: keine Umlaute verwenden). Dieses Verhalten soll aber 2018 korrigiert werden.
 
-*#206*: Für die Formatierung der Modelldateien dürfen keine Tabulatoren verwendet werden.
+*#207*: Im Header der Modelldatei muss der Modelltyp angegeben werden («Erfassungsmodell», «Publikationsmodell», «Validierungsmodell»). 
 
-*#207*: In Kommentaren sollen Umlaute verwendet werden. Dies führt momentan aber noch zu Problemen beim Import in die Datenbank (temporäre Lösung: keine Umlaute verwenden). Dieses Verhalten soll aber 2018 korrigiert werden.
+*#208*: Die Version (= Datum) des Modelles ist (via UML-Editor) anzugeben. ``VERSION "2017-01-19"``
 
-*#208*: Im Header der Modelldatei muss der Modelltyp angegeben werden («Erfassungsmodell», «Publikationsmodell», «Validierungsmodell»). 
-
-*#209*: Die Version (= Datum) des Modelles ist (via UML-Editor) anzugeben. ``VERSION "2017-01-19"``
-
-*#210*: Jedes Attribut muss mit einem Kommentar versehen werden, welcher das Attribut sinnvoll beschreibt.
+*#209*: Jedes Attribut muss mit einem Kommentar versehen werden, welcher das Attribut sinnvoll beschreibt.
 
 Namenskonvention
 ----------------
@@ -89,13 +86,11 @@ Modellstruktur
 Einschränkungen zum Gebrauch von INTERLIS 2.3
 ---------------------------------------------
 
-*#501*: Es dürfen nur zweiwertige (binäre) Beziehungen (ASSOCIATION) deklariert werden. Was heisst das??????
+*#501*: Views dürfen nur in Validierungsmodellen verwendet werden.
 
-*#502*: Views dürfen nur in Validierungsmodellen verwendet werden.
+*#502*: Für ``TEXT`` muss immer eine konkrete Länge angegeben werden.
 
-*#503*: Für ``TEXT`` muss immer eine konkrete Länge angegeben werden.
-
-*#504*: Externe Objektkataloge und Codelisten dürfen nicht verwendet werden.
+*#503*: Externe Objektkataloge und Codelisten dürfen nicht verwendet werden.
 
 Konsistenzbedingungen
 ---------------------
@@ -106,8 +101,8 @@ Konsistenzbedingungen
 
 *#603*: Als OID wird ``INTERLIS.UUIDOID`` verwendet.
 
-Darstellungsmodell Eigenes Modell??? Taucht vorher nirgends auf.
-------------------
+Darstellungsinformationen
+-------------------------
 
 *#701*: Textpositionen werden nur definiert, wenn diese schwer aus den Daten berechnet werden können oder spezielle Anforderungen an die Darstellung bestehen.
 
@@ -126,22 +121,28 @@ Beispielheader
 ::
 
   INTERLIS 2.3; 
-  !!============================================================================== 
-  !!@ File = "SO_AV_Nachfuehrungskreise_20160521.ili"; 
-  !!@ Title = "AV-Nachführungskreise"; 
-  !!@ shortDescription = "Nachführungskreise der amtlichen Vermessung im Kanton Solothurn"; 
-  !!@ Issuer = "http://www.agi.so.ch"; 
+/**  
+ * !!------------------------------------------------------------------------------
+ * !! Version    | wer | Ãnderung 
+ * !!------------------------------------------------------------------------------
+ * !! 2015-05-13 | SK  | Modell (v26) für Pilot durch Stefan Keller (SK) erstellt 
+ * !! 2016-11-11 | SK  | Überarbeitung auf Version 32 (dm_npl_ktso_v32_LV95_ili2.ili)
+ * !! 2016-11-29 | OJ  | Tech. Review und Finalisierung durch Oliver Jeker (AGI)
+ * !! 2017-01-05 | OJ  | Korrektur Beziehungsrollennamen = Klassennamen
+ * !! 2017-09-01 | al  | - Lockerung der Beziehung Dokument <-> Geometrie
+ * !!            |     | - NP_Typ_Kanton_Grundnutzung mit N134 ergänzt
+ * !!            |     | - NP_Typ_Kanton_Ueberlagernd_Flaeche mit N812,N813 und
+ * !!            |     |   N820-823 ergänzt
+ * !!            |     | - Rechtschreibung bei Ueberbauungsziffer
+ * !!            |     | - Modell mit Beschreibung ergänzt
+ * !! 2017-09-15 | al  | OID AS INTERLIS.UUIDOID wieder eingefügt
+ * !! 2017-11-18 | sz  | - OID AS INTERLIS.UUIDOID für sämtliche Klassen
+ * !!            |     | - Zusätzliche Assoziation Geometrie <-> Dokument gelöscht
+ * !!            |     | - Klasse Plandokument gelöscht
+ * !!==============================================================================
+ */
   !!@ technicalContact = "mailto:agi@bd.so.ch"; 
   !!@ furtherInformation = "http://models.geo.so.ch/AGI/SO_AV_Nachfuehrungskreise_2016_05_21.pdf"; 
-  !!@ kGeoiV_ID = "SO-1004"; 
-  !!  Erfassungsmodell;
-  !!  Compiler-Version = "4.5.22-20160407"; 
-  !!------------------------------------------------------------------------------ 
-  !! Version    | wer | Änderung 
-  !!------------------------------------------------------------------------------ 
-  !! 2016-02-11 | P1  | Erstfassung 
-  !! 2016-05-21 | P2  | Finalisierung und Abschluss 
-  !!============================================================================== 
   MODEL SO_AV_Nachfuehrungskreise_20160521(de) 
     AT "http://geo.so.ch/models/AGI" 
     VERSION "2016-05-21" = 
