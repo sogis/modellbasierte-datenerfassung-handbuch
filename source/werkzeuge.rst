@@ -6,12 +6,14 @@ Für die verschiedenen Modellierungsprozesse stehen passende Werkzeuge zur Verf�
 UML/INTERLIS-Editor
 -------------------
 
-Der `UML/INTERLIS-Editor <http://umleditor.org/>`_ dient der Modellierung von INTERLIS-Modellen mittels UML-Diagrammen. Er benötigt Java und kann lokal installiert und verwendet werden. Die Lernkurve ist relativ steil und die Bedienung gewöhnungsbedürftig. Mit dem Verständnis von INTERLIS als Modellierungssprache wächst auch die Verständnis für die Bedienung des *UML/INTERLIS-Editors*.
+Der `UML/INTERLIS-Editor <http://umleditor.org/>`_ dient der Modellierung von INTERLIS-Modellen mittels UML-Diagrammen. Er benötigt Java und kann lokal installiert und verwendet werden. Die Lernkurve ist relativ steil und die Bedienung gewöhnungsbedürftig. Mit dem Verständnis von INTERLIS als Modellierungssprache wächst auch die Verständnis für die Bedienung des *UML/INTERLIS-Editors*. Als Einstiegshilfe dient die Wikiseite `Modelle modellieren <https://geoweb.rootso.org/redmine/projects/sogiswiki/wiki/Modelle_modellieren>`_.
 
 ili2c
 -----
 
 Mittels `INTERLIS-Compiler <https://sourceforge.net/projects/umleditor/files/ili2c/>`_ kann das INTERLIS-Modell syntaktisch geprüft werden. Die Software ist bereits im *UML/INTERLIS-Editor* eingebaut und muss nicht zwingend separat installiert werden.
+
+Folgende Version ist zu verwenden: 4.5.22 oder höher
 
 ili2pg
 ------
@@ -30,4 +32,4 @@ Dank des `ilivalidators <https://github.com/claeis/ilivalidator>`_ kann eine INT
 QGIS-Projektgenerator
 ---------------------
 
-Das QGIS-Plugin «QGIS-Projektgenerator» (QGIS 3 only) erstellt anhand eines INTERLIS-Modelles resp. der in der Datenbank angelegten Tabellen automatisch ein QGIS-Projekt mit bereits vorkonfigurierten und verknüpften Formularen. Für grössere Modelle wird man in Zukunft sicher darauf aufbauen können. Oliver Jeker war Mitglied der Arbeitsgruppe und Sandra Curiger hat bereits erste Tests durchgeführt.
+Das QGIS-Plugin «QGIS-Projektgenerator» (QGIS 3 only) erstellt anhand eines INTERLIS-Modelles resp. der in der Datenbank angelegten Tabellen automatisch ein QGIS-Projekt mit bereits vorkonfigurierten und verknüpften Formularen. Für grössere Modelle wird man in Zukunft sicher darauf aufbauen können. (Oliver Jeker war Mitglied der Arbeitsgruppe und Sandra Curiger hat bereits erste Tests durchgeführt.)

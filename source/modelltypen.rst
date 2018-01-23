@@ -5,11 +5,11 @@ INTERLIS-Modelle werden für verschiedene Zwecke eingesetzt. Entsprechend muss d
 
 Erfassungsmodell
 ----------------
-Erfassungsmodelle dienen der Erfassung und Nachführung von Daten in der Datenbank. Als Werkzeug zur Bewirtschaftung der Daten wird *QGIS* eingesetzt. Der Fokus bei der Modellierung liegt auf den Verzicht von Redundanzen, d.h. die Modelle sind normalisiert. So werden z.B. zwischen den einzelnen Klassen Beziehungen modelliert und Aufzähltypen modelliert (anstatt blosser Text). Im Zusammenspiel mit *QGIS* entsteht somit eine «generische» Erfassungsfachschale.
+Erfassungsmodelle dienen der Erfassung und Nachführung von Daten in der Datenbank. Als Werkzeug zur Bewirtschaftung der Daten wird *QGIS* eingesetzt. Der Fokus bei der Modellierung liegt auf den Verzicht von Redundanzen, d.h. die Modelle sind normalisiert. So werden z.B. zwischen den einzelnen Klassen Beziehungen modelliert und Aufzähltypen modelliert um allfällige Redundanzen zu vermeiden. Im Zusammenspiel mit *QGIS* entsteht somit eine «generische» Erfassungsfachschale.
 
 Publikationsmodell
 ------------------
-Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die Publikation in einem Web GIS oder als «einfacher» Layer in *QGIS*. Die für den Benutzer wichtigen Informationen sind in einem Erfassungsmodell oftmals auf verschiedene Klassen resp. Datenbanktabellen verteilt. Für die reine Darstellung und das einfache Abfragen von Informationen ist ein simpleres Modell – das Publikationsmodell – zu erarbeiten. Hauptmerkmal eines Publikationsmodelles ist der Verzicht auf Beziehungen zwischen den Klassen und dass der Inhalt immer wieder und automatisierbar aus dem Erfassungsmodell und weiteren vorhandener Daten ableitbar ist.
+Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die Publikation in einem Web GIS oder als «einfacher» Layer in *QGIS*. Die für den Benutzer wichtigen Informationen sind in einem Erfassungsmodell oftmals auf verschiedene Klassen resp. Datenbanktabellen verteilt. Für die reine Darstellung und das einfache Abfragen von Informationen ist ein simpleres Modell – das Publikationsmodell – zu erarbeiten. Hauptmerkmal eines Publikationsmodelles ist der Verzicht auf Beziehungen zwischen den Klassen und dass der Inhalt zu jedem Zeitpunkt und automatisiert aus dem Erfassungsmodell und weiteren vorhandener Daten ableitbar ist.
 
 Für eine allfällige Datenabgabe kann sowohl das Erfassungs- und Publikationsmodell zweckdienlich sein.
 

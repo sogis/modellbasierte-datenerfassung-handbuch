@@ -1,14 +1,14 @@
 Modellierungsprozess
 ====================
 
-Auf eine strenge Formalisierung des eigentlichen Modellierungsprozesses («Startsitzung», «FIG»  etc.) wird verzichtet. Die Datenmodelle werden durch das AGI gemeinsam mit den Dienststellen erarbeitet. Für den Modellierungsprozess existiert eine Checkliste (``H:\BJSVW\Agi\KGDM\Vorlagen\Checkliste_DM_V6.docx``). Diese ist zu verwenden.
+Auf eine strenge Formalisierung des eigentlichen Modellierungsprozesses («Startsitzung», «FIG»  etc.) wird verzichtet. Die Datenmodelle werden durch das AGI gemeinsam mit den Dienststellen erarbeitet. Für den Modellierungsprozess existiert eine Checkliste (``H:\BJSVW\Agi\KGDM\Vorlagen\Checkliste_DM_V6.docx``). Diese ist zu verwenden und gegebenenfalls zu ergänzen.
 
 (1) Datenerfassungswunsch in der Dienststelle
 ---------------------------------------------
 
 *Verantwortung: Dienststelle*
 
-Auslöser kann eine neue Aufgabe sein oder es können ebenfalls alte, bestehende Daten in die modellbasierte Struktur gebracht werden.
+Auslöser kann eine neue Aufgabe sein oder es können bestehende Daten sein, welche in die modellbasierte Struktur gebracht werden sollen.
 
 (2) Erarbeitung der Modelle
 ---------------------------
@@ -31,9 +31,9 @@ Die Dienststellen müssen zwingend das Modell verstehen und reviewen.
 
 *Verantwortung: AGI und Dienststelle*
 
-Die Dienststelle muss das Modell in einer Testumgebung zusammen mit einem konfiguriertem QGIS-Projekt testen können. Dieser Schritt ist ungemein wichtig, da jede Anpassung am Modell Aufwand verursacht.
+Die Dienststelle muss das Modell in einer Testumgebung zusammen mit einem konfiguriertem QGIS-Projekt testen können. Dieser Schritt ist essentiell, da jede Anpassung am Modell Aufwand verursacht.
 
-Der GDI ist mittels Ticket (im dazugehörigen Projekt/Auftrag) sämtliche benötigten Informationen zu kommen zu lassen, dh. ili2pg-Befehl und allfällige weitere DDL-Befehle (Permissions etc.). In Zukunft wird nicht mehr der ili2pg-Befehl für das Anlegen der Tabellen ausgeführt, sondern es wird zuerst mit *ili2pg* eine SQL-Datei mit den ``CREATE TABLE`` etc. Befehlen erstellt und anschliessend wird diese ausgeführt. *Ili2pg* muss diesbezüglich aber noch erweitert werden.
+Der GDI ist mittels Ticket (im dazugehörigen Projekt/Auftrag) sämtliche benötigten Informationen zu kommen zu lassen, dh. ili2pg-Befehl und `DDL-Befehle <http://geoweb.rootso.org/svn/sogis/modellumbau>`_ (Permissions etc.). In Zukunft wird nicht mehr der ili2pg-Befehl für das Anlegen der Tabellen ausgeführt, sondern es wird zuerst mit *ili2pg* eine SQL-Datei mit den ``CREATE TABLE`` etc. Befehlen erstellt und anschliessend wird diese angepasst und durch die GDI ausgeführt. *Ili2pg* muss diesbezüglich aber noch erweitert werden.
 
 Folgende ili2pg-Optionen werden standardmässig verwendet:
 
@@ -47,25 +47,26 @@ Folgende ili2pg-Optionen werden standardmässig verwendet:
 * ``--createUnique``
 * ``--createFk``
 * ``--createNumChecks``
+* ``--nameByTopic``
 
 Anmerkung: Für einen kompletten ili2pg-Befehl fehlen in der Auflistung zwingende Optionen (z.B. DB-Host etc.).
 
-Die ``t_ili2db``-Tabelle sind sowohl für Erfassungs- und Publikationsmodelle in der Datenbank (Test und Produktion) **nicht** zu löschen.
+Die ``t_ili2db``-Tabelle dürfen sowohl im Erfassungs- wie auch im Publikationsmodelle in der Datenbank (Test und Produktion) **nicht** gelöscht werden.
 
 (5) Integration in Produktionsumgebung
 --------------------------------------
 
 *Verantwortung: AGI*
 
-Das AGI integriert das abgenommen Modell in der Produktionsumgebung. Die QGIS-Projektdatei muss mit den entsprechenden Datenbankparametern angepasst werden. Die Integration erfolgt analog der Integration in die Testumgebung.
+Die GDI integriert das abgenommene Modell in der Produktionsumgebung. Die QGIS-Projektdatei muss mit den entsprechenden Datenbankparametern angepasst werden. Die Integration erfolgt analog der Integration in die Testumgebung.
 
-Um eine möglichst hohe Datenqualität zu halten, werden die Daten täglich mit einem ili2pg-Befehl exportiert. Dafür wird ein Skript (in Zukunft GRETL-Job) verwendet. Nach der Integration ist das neue Modell in das Skript zu integrieren (zur Zeit durch Noëmi Sturm).
+Um eine möglichst hohe Datenqualität zu halten, werden die Daten täglich mit einem ili2pg-Befehl exportiert. Dafür wird ein Skript (in Zukunft GRETL-Job) verwendet. Nach der Integration ist das neue Modell in das Skript zu integrieren (GDI).
 
 (6) Modelländerungen
 --------------------
 
 *Verantwortung: AGI und Dienststelle*
 
-Anforderungen an ein Modell können im Laufe der Zeit ändern. Sogenannte Modelländerungen sind zwar nicht gewünscht aber sie kommen vor. Welche der einzelnen Modellierungsschritte  nochmals durchgeführt werden müssen, hängt von der Änderung selbst ab. Da noch praktisch keine Erfahrungen vorliegen, geht man davon aus, dass das bestehende Schema umbenannt wird und mit dem geänderten Modell ein neues Schema mit dem gleichen Namen erstellt wird. Die alten Daten können mittels GRETL-Job in die neuen Tabellen kopiert umgebaut werden. Ist die Modelländerung abgenommen, kann das alte (umbenannte) Schema gelöscht werden.
+Anforderungen an ein Modell können im Laufe der Zeit ändern. Sogenannte Modelländerungen sind zwar nicht gewünscht, aber sind nicht vermeidbar. Welche der einzelnen Modellierungsschritte nochmals durchgeführt werden müssen, hängt von der Änderung selbst ab. Da noch praktisch keine Erfahrungen vorliegen, wird davon ausgegangen, dass das bestehende Schema umbenannt wird und mit dem geänderten Modell ein neues Schema mit dem gleichen Namen erstellt wird. Die alten Daten können mittels GRETL-Job in die neuen Tabellen kopiert umgebaut werden. Ist die Modelländerung abgenommen, kann das alte (umbenannte) Schema gelöscht werden.
 
-Der Modelländerungsprozess hängt sicher auch davon ab, wie wir in Zukunft grundsätzlich Änderungen im AGDI leben wollen und (technisch) können. Time will tell.
+Der Modelländerungsprozess hängt sicher auch davon ab, wie in Zukunft grundsätzlich Änderungen im AGDI vorgenommen werden sollen und können.
