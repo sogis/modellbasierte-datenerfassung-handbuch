@@ -2,7 +2,7 @@
 
 === Modellierungssprache / Compiler
 
-#101:: Modellierungssprache ist INTERLIS 2.3 gemäss Referenzhandbuch vom 13. April 2006.
+#101:: Modellierungssprache ist INTERLIS 2.3 gemäss Referenzhandbuch vom 13. April 2006.
 
 #102:: Für die Kontrolle der Datenmodelle wird der INTERLIS-Compiler Version 4.5.22 vom 7. April 2016 (oder höher) eingesetzt.
 
@@ -17,7 +17,7 @@
 
 kk_ds_n*_[Publikation]_v*[_Publikation_v*].ili/.uml
 
-kk: Kantonskürzel (`SO`)
+kk: Kantonskuürzel (`SO`)
 
 ds: Kürzel Amt / Dienststelle (`AV`)
 
@@ -25,13 +25,13 @@ n*: Sprechender Name des Modells (`Nachfuehrungskreise`)
 
 v*: Version des Modells im Format JJJJMMTT (`20160407`)
 
-Für den Dateinamen des Publikationsmodelles wird «Publikation» hinzugefügt. Für den Dateinamen des Validierungsmodells wird dem Dateinamen des zu validierenden Modelles «Validierung» (inkl. Datum) hinzugefügt.
+Für den Dateinamen des Publikationsmodelles wird «Publikation» hinzugefügt. Für den Dateinamen des Validierungsmodells wird dem Dateinamen des zu validierenden Modelles «Validierung» (inkl. Datum) hinzugefügt.
 
 #202:: Die Benennung von Modellen erfolgt nach folgendem Schema:
 
 kk_ds_n*_v*
 
-kk: Kantonskürzel (`SO`)
+kk: Kantonskürzel (`SO`)
 
 ds: Kürzel Amt / Dienststelle (`AV`)
 
@@ -43,9 +43,9 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #203:: Die Metaattribute `File`, `Title`, `shortDescription`, `Issuer` und `technicalContact` sind im Header der Modelldatei zu erfassen.
 
-#204:: Die Änderungshistorie wird im Header der Modelldatei dokumentiert.
+#204:: Die Änderungshistorie wird im Header der Modelldatei dokumentiert.
 
-#205:: Für die Formatierung der Modelldateien dürfen keine Tabulatoren verwendet werden.
+#205:: Für die Formatierung der Modelldateien dürfen keine Tabulatoren verwendet werden.
 
 #206:: In Kommentaren sollen Umlaute verwendet werden. Dies führt momentan aber noch zu Problemen beim Import in die Datenbank (temporäre Lösung: keine Umlaute verwenden). Dieses Verhalten soll aber 2018 korrigiert werden.
 
@@ -59,7 +59,7 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #301:: Alle Modellelemente (Modellnamen, Topics, Klassen, Attribute etc.) werden ausschliesslich auf Deutsch bezeichnet.
 
-#302:: Namen von Topics, Klassen, Assoziationen und Attributen sollte nicht länger als 29 Zeichen sein.
+#302:: Namen von Topics, Klassen, Assoziationen und Attributen sollte nicht länger als 29 Zeichen sein.
 
 #303:: Topic-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Plural.
 
@@ -73,31 +73,31 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #401:: Es müssen die Geometrietypen aus dem CHBase-Modell `GeometryCHLV95_V1` verwendet werden.
 
-#402:: Für Kantonskürzel muss `CHCantonCode` aus dem CHBase-Modell `CHAdminCodes_V1` verwendet werden
+#402:: Für Kantonskürzel muss `CHCantonCode` aus dem CHBase-Modell `CHAdminCodes_V1` verwendet werden
 
 #403:: BFS-Nummern sind als Wertebereich 0 .. 9999 zu definieren.
 
 === Einschränkungen zum Gebrauch von INTERLIS 2.3
 
-#501:: Views dürfen nur in Validierungsmodellen verwendet werden.
+#501:: Views dürfen nur in Validierungsmodellen verwendet werden.
 
-#502:: Für `TEXT` muss immer eine konkrete Länge angegeben werden.
+#502:: Für `TEXT` muss immer eine konkrete Länge angegeben werden.
 
-#503:: Externe Objektkataloge und Codelisten dürfen nicht verwendet werden.
+#503:: Externe Objektkataloge und Codelisten dürfen nicht verwendet werden.
 
 === Konsistenzbedingungen
 
 #601:: Die Kardinalitäten von Rollen muss erfasst werden.
 
-#602:: UNIQUE-Bedingungen müssen erfasst werden.
+#602:: UNIQUE-Bedingungen müssen erfasst werden.
 
 #603:: Als OID wird `INTERLIS.UUIDOID` verwendet.
 
 === Darstellungsinformationen
 
-#701:: Textpositionen werden nur definiert, wenn diese schwer aus den Daten berechnet werden können oder spezielle Anforderungen an die Darstellung bestehen.
+#701:: Textpositionen werden nur definiert, wenn diese schwer aus den Daten berechnet werden können oder spezielle Anforderungen an die Darstellung bestehen.
 
-#702:: Für Labelorientierungen etc. wird die Einheit `Units.Angle_Degree` verwendet.
+#702:: Für Labelorientierungen etc. wird die Einheit `Units.Angle_Degree` verwendet.
 
 === Allgemeines
 
@@ -111,7 +111,7 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 INTERLIS 2.3; 
 /**  
 * !!------------------------------------------------------------------------------
-* !! Version    | wer | Ãnderung 
+* !! Version    | wer | Änderung 
 * !!------------------------------------------------------------------------------
 * !! 2015-05-13 | SK  | Modell (v26) für Pilot durch Stefan Keller (SK) erstellt 
 * !! 2016-11-11 | SK  | Überarbeitung auf Version 32 (dm_npl_ktso_v32_LV95_ili2.ili)
