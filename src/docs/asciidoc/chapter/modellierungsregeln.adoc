@@ -41,7 +41,7 @@ v*: Version des Modells im Format JJJJMMTT (`20160407`)
 
 Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog der Regel für Dateinamen gewählt.
 
-#203:: Die Metaattribute `File`, `Title`, `shortDescription`, `Issuer` und `technicalContact` sind im Header der Modelldatei zu erfassen.
+#203:: Die Metaattribute `furtherInformation` und `technicalContact` sind im Header der Modelldatei zu erfassen.
 
 #204:: Die Änderungshistorie wird im Header der Modelldatei dokumentiert.
 
@@ -91,7 +91,7 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #602:: UNIQUE-Bedingungen müssen erfasst werden.
 
-#603:: Als OID wird `INTERLIS.UUIDOID` verwendet.
+#603:: Als OID muss `INTERLIS.UUIDOID` verwendet werden.
 
 === Darstellungsinformationen
 
