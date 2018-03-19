@@ -1,6 +1,6 @@
 // header file for HHGDAC AsciiDoc CheatSheet
 //
-= Modellbasierte Datenerfassung - Handbuch (V 0.2.1)
+= Modellbasierte Datenerfassung - Handbuch (V 0.2.2)
 :toc: right
 :imagesdir: ./images
 
