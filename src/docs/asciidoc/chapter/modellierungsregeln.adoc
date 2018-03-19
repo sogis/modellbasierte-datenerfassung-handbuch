@@ -13,7 +13,7 @@
 
 #201:: Die Benennung von Modell- und UML- Dateien erfolgt nach folgendem Schema:
 
-kk_ds_n*_[Publikation]_v*[_Publikation_v*].ili/.uml
+kk_ds_n*_[Publikation]_v*[_Validierung_v*].ili/.uml
 
 kk: Kantonskuürzel (`SO`)
 
@@ -27,7 +27,7 @@ Für den Dateinamen des Publikationsmodelles wird «Publikation» hinzugefügt. 
 
 #202:: Die Benennung von Modellen erfolgt nach folgendem Schema:
 
-kk_ds_n*_v*
+kk_ds_n*_[Publikation]_v*[_Validierung_v*]
 
 kk: Kantonskürzel (`SO`)
 
@@ -39,9 +39,9 @@ v*: Version des Modells im Format JJJJMMTT (`20160407`)
 
 Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog der Regel für Dateinamen gewählt.
 
-#203:: Die Metaattribute `furtherInformation` und `technicalContact` sind im Header der Modelldatei zu erfassen.
+#203:: Die Metaattribute `furtherInformation` und `technicalContact` sind im Header der Modelldatei (via UML-Editor) zu erfassen.
 
-#204:: Die Änderungshistorie wird im Header der Modelldatei dokumentiert.
+#204:: Die Änderungshistorie wird im Header der Modelldatei (via UML-Editor) dokumentiert.
 
 #205:: Für die Formatierung der Modelldateien dürfen keine Tabulatoren verwendet werden.
 
@@ -50,6 +50,8 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 #207:: Die Version (= Datum) des Modelles ist (via UML-Editor) anzugeben. `VERSION "2017-01-19"`
 
 #208:: Jedes Attribut muss mit einem Kommentar versehen werden, welcher das Attribut sinnvoll beschreibt.
+
+#210:: Jede Klasse muss mit einem Kommentar versehen werden, welcher die Klasse sinnvol beschreibt.
 
 === Namenskonvention
 
@@ -63,7 +65,7 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #305:: Attribut-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Singular. Bei Verwendung von `BAG OF` resp. `LIST OF` oder in (Publikations-)modellen bei komma-separierten Inhalten wird der Plural verwendet.
 
-#306:: Die Verwendung von reservierten Namen ist nicht erlaubt.
+#306:: Die Verwendung von reservierten Namen ist nicht erlaubt (z.B. Name).
 
 === Modellstruktur
 
@@ -72,6 +74,12 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 #402:: Für Kantonskürzel muss `CHCantonCode` aus dem CHBase-Modell `CHAdminCodes_V1` verwendet werden
 
 #403:: BFS-Nummern sind als Wertebereich 0 .. 9999 zu definieren.
+
+#404:: Jahre sind als `GregorianYear` zu definieren.
+
+#405:: Monate sind als Wertebereich 1 .. 12 mit der Einheit (Unit) `M` zu definieren.
+
+#406:: Daten sind als `XMLDate` zu definieren
 
 === Einschränkungen zum Gebrauch von INTERLIS 2.3
 
@@ -85,7 +93,7 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #601:: Die Kardinalitäten von Rollen muss erfasst werden.
 
-#602:: UNIQUE-Bedingungen müssen erfasst werden.
+#602:: UNIQUE-Bedingungen müssen, wo sinnvoll, erfasst werden.
 
 #603:: Den Objekten ist immer eine eindeutige Objekt-Identifikation zuzuweisen. Als OID muss `INTERLIS.UUIDOID` verwendet werden.
 
