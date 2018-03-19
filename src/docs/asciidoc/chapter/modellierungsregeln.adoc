@@ -6,9 +6,7 @@
 
 #102:: Für die Kontrolle der Datenmodelle wird der INTERLIS-Compiler Version 4.5.22 vom 7. April 2016 (oder höher) eingesetzt.
 
-#103:: Die verwendete Compiler-Version ist im Modell-Header anzugeben.
-
-#104:: Der Namensraum für Modelle ist http://geo.so.ch/models/AMT wobei das entsprechende Amt angegeben wird.
+#103:: Der Namensraum für Modelle ist http://geo.so.ch/models/AMT wobei das entsprechende Amt angegeben wird.
 
 
 === Modellname / Version / Formatierung
@@ -49,11 +47,9 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #206:: In Kommentaren sollen Umlaute verwendet werden. Dies führt momentan aber noch zu Problemen beim Import in die Datenbank (temporäre Lösung: keine Umlaute verwenden). Dieses Verhalten soll aber 2018 korrigiert werden.
 
-#207:: Im Header der Modelldatei muss der Modelltyp angegeben werden («Erfassungsmodell», «Publikationsmodell», «Validierungsmodell»). 
+#207:: Die Version (= Datum) des Modelles ist (via UML-Editor) anzugeben. `VERSION "2017-01-19"`
 
-#208:: Die Version (= Datum) des Modelles ist (via UML-Editor) anzugeben. `VERSION "2017-01-19"`
-
-#209:: Jedes Attribut muss mit einem Kommentar versehen werden, welcher das Attribut sinnvoll beschreibt.
+#208:: Jedes Attribut muss mit einem Kommentar versehen werden, welcher das Attribut sinnvoll beschreibt.
 
 === Namenskonvention
 
@@ -65,7 +61,7 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #304:: Klassen-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Singular.
 
-#305:: Attribut-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Singular.
+#305:: Attribut-Namen: Gross- und Kleinschrift mit Underscore als Trennzeichen. Singular. Bei Verwendung von `BAG OF` resp. `LIST OF` oder in (Publikations-)modellen bei komma-separierten Inhalten wird der Plural verwendet.
 
 #306:: Die Verwendung von reservierten Namen ist nicht erlaubt.
 
@@ -91,7 +87,7 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #602:: UNIQUE-Bedingungen müssen erfasst werden.
 
-#603:: Als OID muss `INTERLIS.UUIDOID` verwendet werden.
+#603:: Den Objekten ist immer eine eindeutige Objekt-Identifikation zuzuweisen. Als OID muss `INTERLIS.UUIDOID` verwendet werden.
 
 === Darstellungsinformationen
 
