@@ -35,12 +35,12 @@ Folgende ili2pg-Optionen werden standardmässig verwendet:
 * `--defaultSrsCode 2056`
 * `--strokeArcs`
 * `--createGeomIdx`
+* `--createFk`
 * `--createFkIdx`
 * `--createEnumTabs`
 * `--beautifyEnumDispName`
 * `--createMetaInfo`
 * `--createUnique`
-* `--createFk`
 * `--createNumChecks`
 * `--nameByTopic`
 
