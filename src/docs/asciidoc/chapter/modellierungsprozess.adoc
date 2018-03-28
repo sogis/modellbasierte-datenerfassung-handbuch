@@ -48,6 +48,58 @@ Anmerkung: Für einen kompletten ili2pg-Befehl fehlen in der Auflistung zwingend
 
 Die `t_ili2db`-Tabelle dürfen sowohl im Erfassungs- wie auch im Publikationsmodelle in der Datenbank (Test und Produktion) *nicht* gelöscht werden.
 
+Damit die GDI das Modell in der Testumgebung anlegen kann, braucht sie folgende Informationen im Ticket:
+
+* den INTERLIS-Modellnamen
+* wo das INTERLIS-Modellfile abgelegt ist, falls das Modell nicht in einem Modellrepository verfügbar ist
+* ili2pg-Optionen, die allenfalls zur obigen Liste hinzugefügt oder weggelassen werden müssen, mit Begründungen dazu
+* die zu verwendende ili2pg-Version
+* eine Datei `postscript.sql`, welche die SQL-Befehle zum Anlegen allenfalls neu benötigter DB-Rollen und für die Berechtigungen auf Schema, Tabellen und Sequenzen enthält; Beispiel:
+
+....
+CREATE ROLE afu_gefahrenkartierung_write;
+COMMENT ON ROLE afu_gefahrenkartierung_write IS 'Gruppe mit Editierrechten für AFU-Gefahrenkartierung';
+
+COMMENT ON SCHEMA afu_gefahrenkartierung IS 'AFU, Gefahrenkartierung. Kontakt: doris.vath@bd.so.ch, oliver.jeker@bd.so.ch';
+GRANT USAGE ON SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write, PUBLIC;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO PUBLIC;
+....
+
+* die Angabe, welche DB-Benutzer oder welche DB-Rollen in die allenfalls neu angelegte DB-Rolle aufgenommen werden müssen
+
+Die GDI erstellt weiter eine Datei `prescript.sql` mit folgendem Inhalt:
+
+....
+SET ROLE sogis_admin;
+....
+
+Danach führt sie auf dem Server `geoutil.verw.rootso.org` folgenden Befehl aus (sinngemäss):
+
+....
+java -jar /usr/local/ili2pg-VERSION/ili2pg.jar --dbhost geodb-t.verw.rootso.org --dbport 5432 --dbdatabase sogis --dbusr EIGENER_BENUTZERNAME --dbpwd EIGENES_PASSWORT \
+--schemaimport --dbschema SCHEMANAME --models MODELLNAME \
+--modeldir '.;http://models.geo.admin.ch/' \
+AUF DIESE ZEILE KOMMEN ALLE OBEN DEFINIERTEN STANDARD-OPTIONEN \
+--preScript prescript.sql --postScript postscript.sql
+....
+
+Falls das Modell in einem Modellrepository verfügbar ist, kann die Option `--modeldir` weggelassen werden.
+
+(In diesem Beispiel wird davon ausgegangen, dass das Modell, das _PreScript_ und das _PostScript_ im aktuellen Ordner liegen, was aber keine zwingende Voraussetzung ist.)
+
+Weiter führt die GDI einen Befehl nach folgendem Muster aus, um bestimmte Benutzer einer Gruppe zuzuweisen:
+
+....
+psql -h geodb-t.verw.rootso.org -d sogis -c "GRANT afu_gefahrenkartierung_write TO vumaavat, bjsvwjek;"
+....
+
+Die ausgeführten Befehle (ohne Passwort) werden von der GDI zur Dokumentation im Ticket festgehalten.
+
+
 === Integration in Produktionsumgebung
 
 _Verantwortung: AGI_
