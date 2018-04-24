@@ -1,6 +1,6 @@
 == Modellierungsprozess
 
-Auf eine strenge Formalisierung des eigentlichen Modellierungsprozesses («Startsitzung», «FIG»  etc.) wird verzichtet. Die Datenmodelle werden durch das AGI gemeinsam mit den Dienststellen erarbeitet. Für den Modellierungsprozess existiert eine Checkliste (``H:\BJSVW\Agi\KGDM\Vorlagen\Checkliste_DM_V6.docx``). Diese ist zu verwenden und gegebenenfalls zu ergänzen.
+Auf eine strenge Formalisierung des eigentlichen Modellierungsprozesses («Startsitzung», «FIG»  etc.) wird verzichtet. Die Datenmodelle werden durch das AGI gemeinsam mit den Dienststellen erarbeitet. Für den Modellierungsprozess existiert eine Checkliste (aktuelle Version unter ``H:\BJSVW\Agi\KGDM\Vorlagen\``). Diese ist zu verwenden und gegebenenfalls zu ergänzen.
 
 === Datenerfassungswunsch in der Dienststelle
 
