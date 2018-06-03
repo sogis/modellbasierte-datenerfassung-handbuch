@@ -32,17 +32,9 @@ Der GDI ist mittels Ticket (im dazugehörigen Projekt/Auftrag) sämtliche benöt
 
 Folgende ili2pg-Optionen werden standardmässig verwendet:
 
-* `--defaultSrsCode 2056`
-* `--strokeArcs`
-* `--createGeomIdx`
-* `--createFk`
-* `--createFkIdx`
-* `--createEnumTabs`
-* `--beautifyEnumDispName`
-* `--createMetaInfo`
-* `--createUnique`
-* `--createNumChecks`
-* `--nameByTopic`
+....
+--defaultSrsCode 2056 --strokeArcs --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createUnique --createNumChecks --nameByTopic
+....
 
 Anmerkung: Für einen kompletten ili2pg-Befehl fehlen in der Auflistung zwingende Optionen (z.B. DB-Host etc.).
 
@@ -80,7 +72,8 @@ SET ROLE sogis_admin;
 Danach führt sie auf dem Server `geoutil.verw.rootso.org` folgenden Befehl aus (sinngemäss):
 
 ....
-java -jar /usr/local/ili2pg-VERSION/ili2pg.jar --dbhost geodb-t.verw.rootso.org --dbport 5432 --dbdatabase sogis --dbusr EIGENER_BENUTZERNAME --dbpwd EIGENES_PASSWORT \
+DBHOST=geodb-t.rootso.org
+java -jar /usr/local/ili2pg-VERSION/ili2pg.jar --dbhost $DBHOST --dbport 5432 --dbdatabase pub --dbusr $USER --dbpwd $(awk -v dbhost=$DBHOST -F ':' '$1~dbhost{print $5}' ~/.pgpass) \
 --schemaimport --dbschema SCHEMANAME --models MODELLNAME \
 --modeldir '.;http://models.geo.admin.ch/' \
 AUF DIESE ZEILE KOMMEN ALLE OBEN DEFINIERTEN STANDARD-OPTIONEN \
