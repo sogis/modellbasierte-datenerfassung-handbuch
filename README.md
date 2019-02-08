@@ -27,10 +27,12 @@ gradle generatePDF
 ## Setup Github pages
 
 ```
-git checkout --orphan gh-pages
-git rm -rf .
-echo "My Page" > index.html
-git add index.html
+cd /path/to/repo-name
+git symbolic-ref HEAD refs/heads/gh-pages
+rm .git/index
+git clean -fdx
+echo "My GitHub Page" > index.html
+git add .
 git commit -a -m "First pages commit"
-git push --set-upstream origin gh-pages
+git push origin gh-pages
 ```
