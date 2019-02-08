@@ -19,6 +19,6 @@ deploy:
   - provider: pages
     skip_cleanup: true
     local_dir: build/asciidoc/html5/  # or remove this line to upload from root of repo
-    github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+    github_token: $GITHUB_TOKEN  
     on:
       branch: master
