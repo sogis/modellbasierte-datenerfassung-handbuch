@@ -4,6 +4,7 @@ plugins {
     id "org.asciidoctor.convert" version "1.5.6"
 }
 
+apply from: "$rootDir/gradle/versioning.gradle"
 apply plugin: 'groovy'
 
 dependencies {
@@ -12,11 +13,11 @@ dependencies {
         'org.codehaus.groovy:groovy-all:2.4.9',
         'org.spockframework:spock-core:1.1-groovy-2.4'
     )
-    asciidoctor 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.15'
+    asciidoctor 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.16'
 }
 
 asciidoctorj {
-    version = '1.5.4'
+    version = '1.5.8.1'
 }
 
 ext {
@@ -41,7 +42,8 @@ tasks.withType(AsciidoctorTask) { docTask ->
           'source-highlighter': 'coderay',
           'toc': 'right',
           'icons': 'font',
-          'sourceDir': "$projectDir/src/"
+          'sourceDir': "$projectDir/src/",
+          'project-version' : project.version.toString()
 
     // good to see what the build is doing...
     logDocuments = true
@@ -52,6 +54,16 @@ task generatePDF (
     description: 'use pdf as asciidoc backend') {
 
     backends = ['pdf']
+    attributes \
+        'pdf-stylesdir': "$projectDir/src/docs/asciidoc/theme",
+        'pdf-style': 'custom',
+        'pdf-fontsdir': "$projectDir/src/docs/asciidoc/theme"
 }
 
 defaultTasks 'clean', 'asciidoctor'
+
+task fubar() {
+    doLast {
+        println version
+    }
+}
