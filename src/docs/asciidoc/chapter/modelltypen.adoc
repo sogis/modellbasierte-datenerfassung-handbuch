@@ -17,3 +17,7 @@ Für eine allfällige Datenabgabe kann sowohl das Erfassungs- und Publikationsmo
 Das Validierungsmodell dient zur Definition von zusätzlichen Prüfungen mit der Software _ilivalidator_. In diesem Modell müssen zuerst Views erstellt werden. In diesen Views können mit Constraints die zusätzlichen Prüfungen definiert werden. Ein Beispiel findet sich http://geo.so.ch/models/ARP/SO_Nutzungsplanung_20171118_Validierung_20171120.ili[hier].
 
 Weitergehende Informationen zu den Modelltypen gibt es in der https://intraso.rootso.org/verwaltung/bau-und-justiz/amt-fuer-geoinformation/dokumente-und-grundlagen/veranstaltungen-workshops/[Präsentation] des AGI vom 29. August 2017 zum Thema «Arbeiten mit einem Datenmodell».
+
+=== Extension-Functions-Modell
+
+Zum jetzigen Zeitpunkt (2019-03-21) gibt es _ein_ Modell (`SO_FunctionsExt`), in welchem zusätzliche Prüffunktionen deklariert werden. Die Funktionen selber werden in Java https://github.com/sogis/ilivalidator-extension-functions[implementiert]. Der Modellnamen dieses Modelles ist statisch, damit nicht bei jedem neuen Release sämtliche Validierungsmodelle, welche dieses Modell importieren, nachgeführt werden müssen. Dies bedingt jedoch eine strenge Stabilität der Funktionssignaturen. 
