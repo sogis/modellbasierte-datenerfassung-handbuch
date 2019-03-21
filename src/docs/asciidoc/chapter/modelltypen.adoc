@@ -21,3 +21,5 @@ Weitergehende Informationen zu den Modelltypen gibt es in der https://intraso.ro
 === Extension-Functions-Modell
 
 Zum jetzigen Zeitpunkt (2019-03-21) gibt es _ein_ Modell (`SO_FunctionsExt`), in welchem zusätzliche Prüffunktionen deklariert werden. Die Funktionen selber werden in Java https://github.com/sogis/ilivalidator-extension-functions[implementiert]. Der Modellnamen dieses Modelles ist statisch, damit nicht bei jedem neuen Release sämtliche Validierungsmodelle, welche dieses Modell importieren, nachgeführt werden müssen. Dies bedingt jedoch eine strenge Stabilität der Funktionssignaturen. 
+
+Das Modell `SO_FunctionsExt` muss noch in die offizielle INTERLIS-Modellablage des AGI migriert werden und befindet sich heute im Quellcode des ilivalidator-web-service.
