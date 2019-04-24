@@ -92,6 +92,26 @@ psql -h geodb-t.verw.rootso.org -d sogis -c "GRANT afu_gefahrenkartierung_write 
 
 Die ausgeführten Befehle (ohne Passwort) werden von der GDI zur Dokumentation im Ticket festgehalten.
 
+==== ili2pg-4.x
+
+Mit `ili2pg-4.x` können die DDL-Befehle komplett ohne Datenbank erzeugt und in eine SQL-Datei geschrieben werden. Zusätzliche werden auch gleich verschiedene `INSERT`-Befehle erzeugt (Aufzähltypen, t_ili2db-Metatabellen etc.).
+
+Ein Beispiel:
+
+```
+java -jar /usr/local/ili2pg-4.0.0/ili2pg-4.0.0.jar \
+--dbschema agi_dm01avso24 --models DM01AVSO24LV95 \
+--defaultSrsCode 2056 --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createNumChecks --nameByTopic \
+--createBasketCol --createDatasetCol --createImportTabs --createscript sql/agi_dm01avso24.sql
+```
+
+Die Option `--createImportTabs` ist in ili2pg-4.x zwingend, wenn man die Metatabelle `t_ili2db_import` will. In ili2pg-3.x wurde sie immer erstellt.
+
+Pre- und Postscripts können zwar als Option beim Programmaufruf mitgegeben werden, sie werden aber nicht in die erzeugte SQL-Datei integriert. 
+
+Der GDI ist der Programmaufruf zum Erzeugen der SQL-Datei wie die erzeute SQL-Datei im Ticket mitzuliefern.
+
+WARNING: Mehr zum weiteren Ablauf, wenn wir es durchgespielt haben.
 
 === Integration in Produktionsumgebung
 
