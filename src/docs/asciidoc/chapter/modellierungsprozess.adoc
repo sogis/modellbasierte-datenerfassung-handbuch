@@ -109,7 +109,7 @@ Die Option `--createImportTabs` ist in ili2pg-4.x zwingend, wenn man die Metatab
 
 Pre- und Postscripts können zwar als Option beim Programmaufruf mitgegeben werden, sie werden aber nicht in die erzeugte SQL-Datei integriert. 
 
-Der GDI ist der Programmaufruf zum Erzeugen der SQL-Datei wie die erzeute SQL-Datei im Ticket mitzuliefern.
+Der GDI ist der Programmaufruf zum Erzeugen der SQL-Datei und die erzeute SQL-Datei im Ticket mitzuliefern.
 
 WARNING: Mehr zum weiteren Ablauf, wenn wir es durchgespielt haben.
 
