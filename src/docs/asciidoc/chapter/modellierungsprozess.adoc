@@ -66,7 +66,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO PUBLIC;
 Die GDI erstellt weiter eine Datei `prescript.sql` mit folgendem Inhalt:
 
 ....
-SET ROLE sogis_admin;
+SET ROLE admin;
 ....
 
 Danach führt sie auf dem Server `geoutil.verw.rootso.org` folgenden Befehl aus (sinngemäss):
