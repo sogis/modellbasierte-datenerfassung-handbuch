@@ -12,6 +12,10 @@ Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die
 
 Für eine allfällige Datenabgabe kann sowohl das Erfassungs- und Publikationsmodell zweckdienlich sein.
 
+=== Seitenwagenmodell
+
+Ein Seitenwagenmodell ist strukturell ein Publikationsmodell, liegt aber in der Erfassungsdatenbank. Es wird für den CCC-Cache verwendet, d.h. die externe Fachanwendung schreibt via Data-Service in die Erfassungsdatenbank.
+
 === Validierungsmodell
 
 Das Validierungsmodell dient zur Definition von zusätzlichen Prüfungen mit der Software _ilivalidator_. In diesem Modell müssen zuerst Views erstellt werden. In diesen Views können mit Constraints die zusätzlichen Prüfungen definiert werden. Ein Beispiel findet sich http://geo.so.ch/models/ARP/SO_Nutzungsplanung_20171118_Validierung_20171120.ili[hier].
