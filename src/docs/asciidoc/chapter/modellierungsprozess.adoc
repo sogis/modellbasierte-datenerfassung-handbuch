@@ -26,92 +26,144 @@ Die Dienststellen müssen zwingend das Modell verstehen und reviewen.
 
 _Verantwortung: AGI und Dienststelle_
 
+Hinweise:
+
+- Es wird nur noch der Ablauf mit ili2pg-v4 behandelt. Für ili2pg-v3 siehe ältere Versionen des Handbuchs.
+- Informationen zur lokalen Entwicklungsumgebung inkl. dem einfachen Starten von (leeren) Pub- und Edit-DB und Import der aktuellen DB-Rollen finden sich hier https://github.com/sogis/gretljobs[GRETL-Jobs-README.md].
+
 Die Dienststelle muss das Modell in einer Testumgebung zusammen mit einem konfiguriertem QGIS-Projekt testen können. Dieser Schritt ist essentiell, da jede Anpassung am Modell Aufwand verursacht.
 
-Der GDI ist mittels Ticket (im dazugehörigen Projekt/Auftrag) sämtliche benötigten Informationen zu kommen zu lassen, dh. ili2pg-Befehl und http://geoweb.rootso.org/svn/sogis/modellumbau[DDL-Befehle] (Permissions etc.). In Zukunft wird nicht mehr der ili2pg-Befehl für das Anlegen der Tabellen ausgeführt, sondern es wird zuerst mit _ili2pg_ eine SQL-Datei mit den ``CREATE TABLE`` etc. Befehlen erstellt und anschliessend wird diese angepasst und durch die GDI ausgeführt. _Ili2pg_ muss diesbezüglich aber noch erweitert werden.
+Mit ili2pg-v4 wird das Schema nicht direkt durch `ili2pg` in der Datenbank erzeugt, sondern es wird zuerst eine SQL mit den DDL-Befehlen erstellt. 
 
-Folgende ili2pg-Optionen werden standardmässig verwendet:
+Der GDI ist mittels Ticket (im dazugehörigen Projekt/Auftrag) sämtliche benötigten Informationen zu kommen zu lassen:
 
-....
---defaultSrsCode 2056 --strokeArcs --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createUnique --createNumChecks --nameByTopic
-....
+- `ili2pg_schemaimport.sh`
+- Durch ili2pg erzeuge SQL-Datei.
+- `postscript.sql` (`prescript.sql` ist in der Regel nicht mehr notwendig)
+- INTERLIS-Datenmodell (*.ili), falls noch nicht in der Modellablage publiziert.
 
-Anmerkung: Für einen kompletten ili2pg-Befehl fehlen in der Auflistung zwingende Optionen (z.B. DB-Host etc.).
-
-Die `t_ili2db`-Tabelle dürfen sowohl im Erfassungs- wie auch im Publikationsmodelle in der Datenbank (Test und Produktion) *nicht* gelöscht werden.
-
-Damit die GDI das Modell in der Testumgebung anlegen kann, braucht sie folgende Informationen im Ticket:
-
-* den INTERLIS-Modellnamen
-* wo das INTERLIS-Modellfile abgelegt ist, falls das Modell nicht in einem Modellrepository verfügbar ist
-* ili2pg-Optionen, die allenfalls zur obigen Liste hinzugefügt oder weggelassen werden müssen, mit Begründungen dazu
-* die zu verwendende ili2pg-Version
-* eine Datei `postscript.sql`, welche die SQL-Befehle zum Anlegen allenfalls neu benötigter DB-Rollen und für die Berechtigungen auf Schema, Tabellen und Sequenzen enthält; Beispiel:
-
-....
-CREATE ROLE afu_gefahrenkartierung_write;
-COMMENT ON ROLE afu_gefahrenkartierung_write IS 'Gruppe mit Editierrechten für AFU-Gefahrenkartierung';
-
-COMMENT ON SCHEMA afu_gefahrenkartierung IS 'AFU, Gefahrenkartierung. Kontakt: doris.vath@bd.so.ch, oliver.jeker@bd.so.ch';
-GRANT USAGE ON SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write, PUBLIC;
-
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write;
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write;
-
-GRANT SELECT ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO PUBLIC;
-....
-
-* die Angabe, welche DB-Benutzer oder welche DB-Rollen in die allenfalls neu angelegte DB-Rolle aufgenommen werden müssen
-
-Die GDI erstellt weiter eine Datei `prescript.sql` mit folgendem Inhalt:
-
-....
-SET ROLE admin;
-....
-
-Danach führt sie auf dem Server `geoutil.verw.rootso.org` folgenden Befehl aus (sinngemäss):
-
-....
-DBHOST=geodb-t.rootso.org
-java -jar /usr/local/ili2pg-VERSION/ili2pg.jar --dbhost $DBHOST --dbport 5432 --dbdatabase pub --dbusr $USER --dbpwd $(awk -v dbhost=$DBHOST -F ':' '$1~dbhost{print $5}' ~/.pgpass) \
---schemaimport --dbschema SCHEMANAME --models MODELLNAME \
---modeldir '.;http://models.geo.admin.ch/' \
-AUF DIESE ZEILE KOMMEN ALLE OBEN DEFINIERTEN STANDARD-OPTIONEN \
---preScript prescript.sql --postScript postscript.sql
-....
-
-Falls das Modell in einem Modellrepository verfügbar ist, kann die Option `--modeldir` weggelassen werden.
-
-(In diesem Beispiel wird davon ausgegangen, dass das Modell, das _PreScript_ und das _PostScript_ im aktuellen Ordner liegen, was aber keine zwingende Voraussetzung ist.)
-
-Weiter führt die GDI einen Befehl nach folgendem Muster aus, um bestimmte Benutzer einer Gruppe zuzuweisen:
-
-....
-psql -h geodb-t.verw.rootso.org -d sogis -c "GRANT afu_gefahrenkartierung_write TO vumaavat, bjsvwjek;"
-....
-
-Die ausgeführten Befehle (ohne Passwort) werden von der GDI zur Dokumentation im Ticket festgehalten.
-
-==== ili2pg-4.x
-
-Mit `ili2pg-4.x` können die DDL-Befehle komplett ohne Datenbank erzeugt und in eine SQL-Datei geschrieben werden. Zusätzliche werden auch gleich verschiedene `INSERT`-Befehle erzeugt (Aufzähltypen, t_ili2db-Metatabellen etc.).
-
-Ein Beispiel:
-
+==== ili2pg_schemaimport.sh
 ```
-java -jar /usr/local/ili2pg-4.0.0/ili2pg-4.0.0.jar \
---dbschema agi_dm01avso24 --models DM01AVSO24LV95 \
---defaultSrsCode 2056 --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createNumChecks --nameByTopic \
---createBasketCol --createDatasetCol --createImportTabs --createscript sql/agi_dm01avso24.sql
+java -jar /usr/local/ili2pg-4.3.1/ili2pg.jar \
+--dbschema <Schema Name> --models <Modell Name> \
+--defaultSrsCode 2056 --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createNumChecks --nameByTopic --strokeArcs \
+--createBasketCol --createDatasetCol \
+--createscript <Schema Name>.sql
 ```
 
-Die Option `--createImportTabs` ist in ili2pg-4.x zwingend, wenn man die Metatabelle `t_ili2db_import` will. In ili2pg-3.x wurde sie immer erstellt.
+Es handelt sich um den eigentlichen ili2pg-Befehl zum Erzeugen des Schemas und der Tabellen. Die Optionen sind in der Regel nicht zu ändern. Falls sie geändert werden müssen, muss dies begründet werden im Ticket. Er dient der GDI, um ggf. das SQL-Skript auch selber herstellen zu können. Für das lokale Entwickeln lohnt es sich entweder die identische ili2pg-Version zu installieren und/oder einen symbolischen Link zu machen, damit der Pfad im Shellskript nicht geändert werden muss.
 
-Pre- und Postscripts können zwar als Option beim Programmaufruf mitgegeben werden, sie werden aber nicht in die erzeugte SQL-Datei integriert. 
+==== <schemaname>.sql-Datei
+Diese Datei wurde mit obigem Befehl erstellt und enthält das DDL zum Erzeugen des Schemas und der Tabellen (inkl. einigen INSERT-Befehlen) in der Datenbank.
 
-Der GDI ist der Programmaufruf zum Erzeugen der SQL-Datei und die erzeute SQL-Datei im Ticket mitzuliefern.
+==== postscript.sql
+In dieser Datei werden Rollen angelegt und Permissions gesetzt. Zudem werden auch Kommentare zum Schema gesetzt. Einige Beispiele:
 
-WARNING: Mehr zum weiteren Ablauf, wenn wir es durchgespielt haben.
+Öffentliches Schema in der Pub-DB:
+
+```
+COMMENT ON SCHEMA
+   awjf_biotopbaeume_pub
+IS
+   'Dieses Schema wird vom AWJF für die Publikation der Biotopbäume verwendet. Fragen: peter.senn@bd.so.ch, samuel.scheibler@vd.so.ch'
+;
+GRANT USAGE ON SCHEMA awjf_biotopbaeume_pub TO public, ogc_server, sogis_service, gretl
+;
+GRANT SELECT ON ALL TABLES IN SCHEMA awjf_biotopbaeume_pub TO public, ogc_server, sogis_service
+;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA awjf_biotopbaeume_pub TO gretl
+;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA awjf_biotopbaeume_pub TO gretl
+;
+```
+Die Rollen `ogc_server` und `sogis_service` werden vom Web GIS Client benötigt. Die Rolle `gretl` ist für die Ausführung von GRETL-Jobs notwendig.
+
+Nicht-öffentliches Schema in der Pub-DB:
+
+```
+COMMENT ON SCHEMA 
+    afu_abbaustellen_pub 
+IS 
+    'Materialentnahmestellen (Abbau von Kies, Kalk- und Tonstein). Fragen: AfU-Abteilung Boden / Untergrund / Geologie'
+;
+CREATE ROLE afu_abbaustellen_pub_read
+;
+GRANT USAGE ON SCHEMA afu_abbaustellen_pub TO afu_abbaustellen_pub_read, ogc_server, sogis_service, gretl
+;
+GRANT SELECT ON TABLE afu_abbaustellen_pub.abbaustelle TO afu_abbaustellen_pub_read,ogc_server,sogis_service
+;
+GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE afu_abbaustellen_pub.abbaustelle TO gretl
+;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA awjf_biotopbaeume_pub TO gretl
+;
+```
+Die Rolle `public` hat keine Rechte. Die Rolle `afu_abbaustellen_pub_read` hat Leserechte auf das Schema.
+
+Nicht-öffentliches Schema in der Edit-DB:
+
+```
+COMMENT ON SCHEMA
+    afu_gefahrenkartierung
+IS
+    'Erfassungsmodell der Gefahrenkartierungsdaten des Kantons Solothurn'
+;
+CREATE ROLE afu_gefahrenkartierung_read
+;
+CREATE ROLE afu_gefahrenkartierung_write
+;
+GRANT USAGE ON SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write, afu_gefahrenkartierung_read
+;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write
+;
+GRANT SELECT ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_read
+;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write
+;
+GRANT afu_gefahrenkartierung_read TO bjsvw
+;
+GRANT afu_gefahrenkartierung_write TO vumaavat, vumaakau
+;
+```
+Die Rolle `public` hat keine Rechte. Für die Lese- und Schreiberechte weden die Rollen `afu_gefahrenkartierung_write` und `afu_gefahrenkartierung_read` erstellt. Falls ein GRETL-job auf die Daten zugreift, muss der Rolle `gretl` Leserechte vergeben werden.
+
+Schema darf nur gesamtes Amt sehen:
+```
+COMMENT ON SCHEMA
+   afu_igel
+IS
+   'Schema für den Import der heruntergeladenen JSON-Dateien. Standorte und Ställe aus IGEL-Applikation.'
+;
+CREATE ROLE afu_igel_read
+;
+GRANT USAGE ON SCHEMA afu_igel TO afu_igel_read, ogc_server, sogis_service, gretl
+;
+GRANT SELECT ON ALL TABLES IN SCHEMA afu_igel TO afu_igel_read, ogc_server, sogis_service
+;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_igel TO gretl
+;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_igel TO gretl
+;
+GRANT afu_igel_read TO bjsvw, bdafu
+;
+```
+Obwohl die Ämter als Rollen in der Datenbank vorhanden sind, wird zusätzlich ein für das Schema spezifische Rolle erstellt `afu_igel_read`.
+
+==== prescript.sql
+Früher wurde im `prescript.sql` die `admin` Rolle gesetzt, welche die nachfolgenden SQL-Befehle ausgeführt hat. Dies ist nicht mehr notwendig resp. passiert als Option beim Ausführen des `psql`-Befehls. Das `prescript.sql` kann aber trotzdem hilfreich sein, z.B. um bestende Schemen umzubenennen:
+
+```
+ALTER SCHEMA <schema_name> RENAME TO <schema_name>_delete;
+```
+
+
+==== INTERLIS-Datenmodell
+Falls das Datenmodell noch nicht in der offiziellen http://geo.so.ch/models/[INTERLIS-Datenablage] vorhanden ist, muss es dem Ticket angehängt werden. Die Integration eines Modelles in die Ablage ist im https://github.com/sogis/sogis-interlis-repository/blob/master/docs/betriebs-_und_nachfuehrungshandbuch.md[Github-Repo] beschrieben.
+
+==== psql-Befehl
+```
+psql -h localhost -p 54321 -d edit -c "SET ROLE admin" --single-transaction -f prescript.sql -f agi_gb2av.sql -f postscript.sql
+```
+Dieser Befehl erstellt das Schema und führt das `pre-` und `postscript.sql` aus. Er kann lokal ausgeführt werden, um zu testen, ob das «Gesamtpaket» durchläuft.
 
 === Integration in Produktionsumgebung
 
