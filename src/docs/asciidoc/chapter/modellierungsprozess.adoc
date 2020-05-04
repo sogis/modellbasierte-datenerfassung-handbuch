@@ -26,19 +26,19 @@ Die Dienststellen müssen zwingend das Modell verstehen und reviewen.
 
 _Verantwortung: AGI und Dienststelle_
 
-Hinweise:
+**Hinweise:**
 
 - Es wird nur noch der Ablauf mit ili2pg-v4 behandelt. Für ili2pg-v3 siehe ältere Versionen des Handbuchs.
 - Informationen zur lokalen Entwicklungsumgebung inkl. dem einfachen Starten von (leeren) Pub- und Edit-DB und Import der aktuellen DB-Rollen finden sich hier https://github.com/sogis/gretljobs[GRETL-Jobs-README.md].
 
 Die Dienststelle muss das Modell in einer Testumgebung zusammen mit einem konfiguriertem QGIS-Projekt testen können. Dieser Schritt ist essentiell, da jede Anpassung am Modell Aufwand verursacht.
 
-Mit ili2pg-v4 wird das Schema nicht direkt durch `ili2pg` in der Datenbank erzeugt, sondern es wird zuerst eine SQL mit den DDL-Befehlen erstellt. 
+Mit ili2pg-v4 wird das Schema nicht direkt durch `ili2pg` in der Datenbank erzeugt, sondern es wird zuerst eine SQL-Datei mit den DDL-Befehlen erstellt. 
 
 Der GDI ist mittels Ticket (im dazugehörigen Projekt/Auftrag) sämtliche benötigten Informationen zu kommen zu lassen:
 
 - `ili2pg_schemaimport.sh`
-- Durch ili2pg erzeuge SQL-Datei.
+- Durch ili2pg erzeugte SQL-Datei: `<schema_name>.sql`
 - `postscript.sql` (`prescript.sql` ist in der Regel nicht mehr notwendig)
 - INTERLIS-Datenmodell (*.ili), falls noch nicht in der Modellablage publiziert.
 
@@ -51,9 +51,9 @@ java -jar /usr/local/ili2pg-4.3.1/ili2pg.jar \
 --createscript <Schema Name>.sql
 ```
 
-Es handelt sich um den eigentlichen ili2pg-Befehl zum Erzeugen des Schemas und der Tabellen. Die Optionen sind in der Regel nicht zu ändern. Falls sie geändert werden müssen, muss dies begründet werden im Ticket. Er dient der GDI, um ggf. das SQL-Skript auch selber herstellen zu können. Für das lokale Entwickeln lohnt es sich entweder die identische ili2pg-Version zu installieren und/oder einen symbolischen Link zu machen, damit der Pfad im Shellskript nicht geändert werden muss.
+Es handelt sich um den eigentlichen ili2pg-Befehl zum Erzeugen des Schemas und der Tabellen. Die Optionen sind in der Regel nicht zu ändern. Falls sie geändert werden müssen, muss dies im Ticket begründet werden. Er dient der GDI, um ggf. das SQL-Skript auch selber herstellen zu können. Für das lokale Entwickeln lohnt es sich entweder die identische ili2pg-Version zu installieren und/oder einen symbolischen Link zu machen, damit der Pfad im Shellskript nicht geändert werden muss.
 
-==== <schemaname>.sql-Datei
+==== <schema_name>.sql-Datei
 Diese Datei wurde mit obigem Befehl erstellt und enthält das DDL zum Erzeugen des Schemas und der Tabellen (inkl. einigen INSERT-Befehlen) in der Datenbank.
 
 ==== postscript.sql

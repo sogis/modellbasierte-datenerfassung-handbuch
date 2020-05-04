@@ -14,9 +14,9 @@ Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die
 - Eine Geometriespalte pro Klasse.
 - Der Inhalt kann zu jedem Zeitpunkt und automatisiert aus dem Erfassungsmodell und weiterer vorhandener Daten abgeleitet werden.
 
-Bei der Datenabgabe entspricht das Publikationsmodell am ehesten der klassischen Shapefileabgabe. Es wird kein zusätzliches Datenabgabemodell abgestrebt.
+Bei der Datenabgabe entspricht das Publikationsmodell am ehesten der klassischen Shapefile-Datenstruktur. Es wird kein zusätzliches Datenabgabemodell angestrebt.
 
-**Offene Frage (2020-05-04):** Umgang mit Aufzähltypen. Sollen Aufzähltypen verwendet werden im Publikationsmodell? Wie wird aus einem Aufzähltyp-Wert ein "schöner" Text (mit Umlauten etc.).
+**Offene Frage (2020-05-04):** Umgang mit Aufzähltypen. Sollen Aufzähltypen im Publikationsmodell verwendet werden? Wie wird aus einem Aufzähltyp-Wert ein "schöner" Text (mit Umlauten etc.).
 
 === Seitenwagenmodell
 
