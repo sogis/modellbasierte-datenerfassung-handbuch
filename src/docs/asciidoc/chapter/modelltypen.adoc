@@ -8,9 +8,15 @@ Erfassungsmodelle dienen der Erfassung und Nachführung von Daten in der Datenba
 
 === Publikationsmodell
 
-Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die Publikation in einem Web GIS oder als «einfacher» Layer in _QGIS_. Die für den Benutzer wichtigen Informationen sind in einem Erfassungsmodell oftmals auf verschiedene Klassen resp. Datenbanktabellen verteilt. Für die reine Darstellung und das einfache Abfragen von Informationen ist ein simpleres Modell – das Publikationsmodell – zu erarbeiten. Hauptmerkmal eines Publikationsmodelles ist der Verzicht auf Beziehungen zwischen den Klassen und dass der Inhalt zu jedem Zeitpunkt und automatisiert aus dem Erfassungsmodell und weiteren vorhandener Daten ableitbar ist.
+Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die Publikation in einem Web GIS oder als «einfacher» Layer in _QGIS_. Die für den Benutzer wichtigen Informationen sind in einem Erfassungsmodell oftmals auf verschiedene Klassen resp. Datenbanktabellen verteilt. Für die reine Darstellung und das einfache Abfragen von Informationen ist ein simpleres Modell – das Publikationsmodell – zu erarbeiten. Hauptmerkmale eines Publikationsmodelles:
 
-Für eine allfällige Datenabgabe kann sowohl das Erfassungs- und Publikationsmodell zweckdienlich sein.
+- Verzicht auf Beziehungen (Assoziationen) zwischen Klassen.
+- Eine Geometriespalte pro Klasse.
+- Der Inhalt kann zu jedem Zeitpunkt und automatisiert aus dem Erfassungsmodell und weiterer vorhandener Daten abgeleitet werden.
+
+Bei der Datenabgabe entspricht das Publikationsmodell am ehesten der klassischen Shapefileabgabe. Es wird kein zusätzliches Datenabgabemodell abgestrebt.
+
+**Offene Frage (2020-05-04):** Umgang mit Aufzähltypen. Sollen Aufzähltypen verwendet werden im Publikationsmodell? Wie wird aus einem Aufzähltyp-Wert ein "schöner" Text (mit Umlauten etc.).
 
 === Seitenwagenmodell
 
@@ -24,6 +30,6 @@ Weitergehende Informationen zu den Modelltypen gibt es in der https://intraso.ro
 
 === Extension-Functions-Modell
 
-Zum jetzigen Zeitpunkt (2019-03-21) gibt es _ein_ Modell (`SO_FunctionsExt`), in welchem zusätzliche Prüffunktionen deklariert werden. Die Funktionen selber werden in Java https://github.com/sogis/ilivalidator-extension-functions[implementiert]. Der Modellnamen dieses Modelles ist statisch, damit nicht bei jedem neuen Release sämtliche Validierungsmodelle, welche dieses Modell importieren, nachgeführt werden müssen. Dies bedingt jedoch eine strenge Stabilität der Funktionssignaturen. 
+Zum jetzigen Zeitpunkt (2019-03-21) gibt es _ein_ Modell (`SO_FunctionsExt`), in welchem zusätzliche Prüffunktionen deklariert werden. Die Funktionen selber werden in Java https://github.com/sogis/ilivalidator-custom-functions[implementiert]. Der Modellnamen dieses Modelles ist statisch, damit nicht bei jedem neuen Release sämtliche Validierungsmodelle, welche dieses Modell importieren, nachgeführt werden müssen. Dies bedingt jedoch eine strenge Stabilität der Funktionssignaturen. 
 
 Das Modell `SO_FunctionsExt` muss noch in die offizielle INTERLIS-Modellablage des AGI migriert werden und befindet sich heute im Quellcode des ilivalidator-web-service.
