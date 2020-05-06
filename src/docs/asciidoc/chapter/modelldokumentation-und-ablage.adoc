@@ -15,7 +15,7 @@ Dies erfolgt im DDL-Skript in welchem auch die Rechte auf den Tabellen angepasst
 
 === Ablage
 
-Die definitiven und abgenommenen Datenmodelle (`*.ili`) werden in der http://geo.so.ch/models/[INTERLIS-Modellablage] des Kantons Solothurn publiziert. Ist das Datenmodell publiziert, darf es ohne Änderung des Modellnamens inhaltlich nicht verändert werden (redaktionelle Änderungen sind denkbar). Die Modelle werden in der privaten Zone auf das Filesystem kopiert und jede Nacht in die globale Zone ("Internet") gespiegelt. Das Betriebshandbuch zur INTERLIS-Modellablage findet sich hier: `H:\BJSVW\Agi\GDI\Betrieb\Interlis_Modellablage\Betriebs-_und_Nachfuehrungshandbuch_Interlis-Modellablage`.
+Die definitiven und abgenommenen Datenmodelle (`*.ili`) werden in der http://geo.so.ch/models/[INTERLIS-Modellablage] des Kantons Solothurn publiziert. Ist das Datenmodell publiziert, darf es ohne Änderung des Modellnamens inhaltlich nicht verändert werden (redaktionelle Änderungen sind denkbar). Die Publikation ist automatisiert und https://github.com/sogis/sogis-interlis-repository/blob/master/docs/betriebs-_und_nachfuehrungshandbuch.md[hier] beschrieben.
 
 Durch die Publikation in einer Modellablage und der Verknüpfung der verschiedenen Modellablagen untereinander, finden die eingesetzten Werkzeuge (meistens) ohne weiteres Zutun sämtliche INTERLIS-Modelle, die im eigenen Modell importiert werden. 
 
