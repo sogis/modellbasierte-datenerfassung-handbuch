@@ -16,7 +16,7 @@ Folgende Version ist zu verwenden: 4.5.22 oder höher
 
 http://www.eisenhutinformatik.ch/interlis/ili2pg/[Ili2pg] erstellt aufgrund eines INTERLIS-Modelles ein Schema mit leeren Tabellen in einer PostgreSQL/PostGIS-Datenbank. Es kann auch INTERLIS-Transferdateien importieren oder aus einer Datenbank Daten in eine Transferdatei exportieren.
 
-Es wird Version XXXXXX (TODO) verwendet.
+Es wird Version 4.3.1 verwendet.
 
 Mit `ili2gpkg` und `ili2fgdb` stehen Derivate für GeoPackage und FileGeodatabase zur Verfügung.
 
@@ -26,4 +26,4 @@ Dank des https://github.com/claeis/ilivalidator>[ilivalidators] kann eine INTERL
 
 === QGIS-Projektgenerator
 
-Das QGIS-Plugin «QGIS-Projektgenerator» (QGIS 3 only) erstellt anhand eines INTERLIS-Modelles resp. der in der Datenbank angelegten Tabellen automatisch ein QGIS-Projekt mit bereits vorkonfigurierten und verknüpften Formularen. Für grössere Modelle wird man in Zukunft sicher darauf aufbauen können. (Oliver Jeker war Mitglied der Arbeitsgruppe und Sandra Curiger hat bereits erste Tests durchgeführt.)
+Das QGIS-Plugin «QGIS-Projektgenerator» erstellt anhand eines INTERLIS-Modelles resp. der in der Datenbank angelegten Tabellen automatisch ein QGIS-Projekt mit bereits vorkonfigurierten und verknüpften Formularen. 
