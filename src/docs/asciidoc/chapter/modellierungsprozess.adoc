@@ -37,12 +37,12 @@ Mit ili2pg-v4 wird das Schema nicht direkt durch `ili2pg` in der Datenbank erzeu
 
 Der GDI ist mittels Ticket (im dazugehörigen Projekt/Auftrag) sämtliche benötigten Informationen zu kommen zu lassen:
 
-- `ili2pg_schemaimport.sh`
+- `ili2pg_createschema.sh`
 - Durch ili2pg erzeugte SQL-Datei: `<schema_name>.sql`
 - `postscript.sql` (`prescript.sql` ist in der Regel nicht mehr notwendig)
 - INTERLIS-Datenmodell (*.ili), falls noch nicht in der Modellablage publiziert.
 
-==== ili2pg_schemaimport.sh
+==== ili2pg_createschema.sh
 ```
 java -jar /usr/local/ili2pg-4.3.1/ili2pg.jar \
 --dbschema <Schema Name> --models <Modell Name> \
