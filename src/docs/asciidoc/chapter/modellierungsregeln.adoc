@@ -39,7 +39,7 @@ v*: Version des Modells im Format JJJJMMTT (`20160407`)
 
 Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog der Regel für Dateinamen gewählt.
 
-#203:: Die Metaattribute `furtherInformation` und `technicalContact` sind im Header der Modelldatei (via UML-Editor) zu erfassen.
+#203:: Die Metaattribute `furtherInformation` (in der Regel der Link zur UML-Datei) und `technicalContact` (`mailto:agi@bd.so.chg`) sind im Header der Modelldatei (via UML-Editor) zu erfassen.
 
 #204:: Die Änderungshistorie wird im Header der Modelldatei (via UML-Editor) dokumentiert.
 
