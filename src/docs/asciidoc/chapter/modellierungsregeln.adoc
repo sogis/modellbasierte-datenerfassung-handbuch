@@ -6,7 +6,7 @@
 
 #102:: Für die Kontrolle der Datenmodelle wird der INTERLIS-Compiler Version 4.5.22 vom 7. April 2016 (oder höher) eingesetzt.
 
-#103:: Der Namensraum für Modelle ist http://geo.so.ch/models/AMT wobei das entsprechende Amt angegeben wird.
+#103:: Der Namensraum (`AT` in der ili-Datei) für Modelle (`Issuer URI` in _UML/INTERLIS-Editor_) ist https://<AMT>.so.ch, wobei das entsprechende Amt angegeben wird.
 
 
 === Modellname / Version / Formatierung
@@ -134,9 +134,9 @@ INTERLIS 2.3;
 * !!==============================================================================
 */
 !!@ technicalContact = "mailto:agi@bd.so.ch"; 
-!!@ furtherInformation = "http://geo.so.ch/handbuch/nutzungsplanung"; 
-MODEL SO_ARP_Nutzungsplanung_20171118(de) 
-  AT "http://geo.so.ch/models/ARP" 
+!!@ furtherInformation = "http://geo.so.ch/models/ARP/SO_ARP_Nutzungsplanung_20171118.uml"; 
+MODEL SO_ARP_Nutzungsplanung_20171118 (de) 
+  AT "https://arp.so.ch" 
   VERSION "2017-11-18" = 
 
 END SO_ARP_Nutzungsplanung_20171118.
