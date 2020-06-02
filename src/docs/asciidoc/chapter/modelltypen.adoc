@@ -16,7 +16,7 @@ Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die
 
 Es wird kein zusätzliches Datenabgabemodell angestrebt.
 
-Aufzähltypen: Damit Aufzähltypen sinnvoll im Web GIS Client eingesetzt werden können, müssen zwei Bedinungen erfüllt sein: Jeder Aufzähltyp muss einen Kommentar erhalten und es braucht in der Datentabelle eine zusätzliche Spalte, die neben dem Aufzähltyp-Wert auch den Kommentar (den «schönen» Text) zum Aufzähltyp-Wert speichert. Für diese zweite Bedingung muss _ili2pg_ erweitert werden. Für Publikationsmodelle, die nicht im Web GIS Client publiziert werden, gilt diese zweite Bedingung nicht. Falls keine Aufzähltypen im Publikationsmodell modelliert werden, kann man nicht nachträglich in der Metadatenbank Aufzähltypen «erfinden».
+Aufzähltypen: Damit Aufzähltypen sinnvoll im Web GIS Client eingesetzt werden können, müssen zwei Bedingungen erfüllt sein: Jeder Aufzähltyp muss einen Kommentar erhalten und es braucht in der Datentabelle eine zusätzliche Spalte, die neben dem Aufzähltyp-Wert auch den Kommentar (den «schönen» Text) zum Aufzähltyp-Wert speichert. Für diese zweite Bedingung muss _ili2pg_ erweitert werden. Für Publikationsmodelle, die nicht im Web GIS Client publiziert werden, gilt diese zweite Bedingung nicht. Falls keine Aufzähltypen im Publikationsmodell modelliert werden, kann man nicht nachträglich in der Metadatenbank Aufzähltypen «erfinden».
 
 === Seitenwagenmodell
 
