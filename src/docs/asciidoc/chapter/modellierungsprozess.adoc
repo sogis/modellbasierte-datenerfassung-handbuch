@@ -46,7 +46,7 @@ Der GDI ist mittels Ticket (im dazugehörigen Projekt/Auftrag) sämtliche benöt
 ```
 java -jar /usr/local/ili2pg-4.3.1/ili2pg.jar \
 --dbschema <Schema Name> --models <Modell Name> \
---defaultSrsCode 2056 --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createNumChecks --nameByTopic --strokeArcs \
+--defaultSrsCode 2056 --createGeomIdx --createFk --createFkIdx --createUnique --createEnumTabs --beautifyEnumDispName --createMetaInfo --createNumChecks --nameByTopic --strokeArcs \
 --createBasketCol --createDatasetCol \
 --createscript <Schema Name>.sql
 ```
