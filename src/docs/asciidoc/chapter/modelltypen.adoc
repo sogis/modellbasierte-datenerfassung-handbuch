@@ -16,7 +16,13 @@ Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die
 
 Es wird kein zusätzliches Datenabgabemodell angestrebt.
 
-Aufzähltypen: Damit Aufzähltypen sinnvoll im Web GIS Client eingesetzt werden können, müssen zwei Bedingungen erfüllt sein: Jeder Aufzähltyp muss einen Kommentar erhalten und es braucht in der Datentabelle eine zusätzliche Spalte, die neben dem Aufzähltyp-Wert auch den Kommentar (den «schönen» Text) zum Aufzähltyp-Wert speichert. Für diese zweite Bedingung muss _ili2pg_ erweitert werden. Für Publikationsmodelle, die nicht im Web GIS Client publiziert werden, gilt diese zweite Bedingung nicht. Falls keine Aufzähltypen im Publikationsmodell modelliert werden, kann man nicht nachträglich in der Metadatenbank Aufzähltypen «erfinden».
+Aufzähltypen: Damit Aufzähltypen sinnvoll im Web GIS Client eingesetzt werden können, müssen zwei Bedingungen erfüllt sein: Jeder Aufzähltyp-Wert muss ein Metaattribut `@ili2db.dispName` (siehe dazu auch die https://github.com/claeis/ili2db/blob/master/docs/ili2db.rst[offizielle Dokumentation von ili2pg]) erhalten und es braucht in der Datentabelle eine zusätzliche Spalte, die den Wert des Metaattributes (den «schönen» Text) zum Aufzähltyp-Wert speichert. 
+
+Für die erste Bedingung muss eine gepatchte Version des UML-Editors (`/opt/sogis_pic/software/uml-interlis-editor/umleditor-3.6.6.zip`) verwendet werden. Ohne diese gepatchte Version müssen die Metattribute händisch in der ili-Datei eingepflegt werden, was sehr fehleranfällig ist. In der gepatchten Version gibt es für die Metaattribute - ähnlich wie für normale Kommentare - Eingabefelder.
+
+Für die zweite Bedingung muss _ili2pg_ erweitert werden, damit die zusätzliche Spalte automatisch angelegt wird. Bis dies soweit ist, muss die zusätzliche Spalte `<Attributname>_txt` manuell angelegt werden. Dazu werden in der `postscript.sql`-Datei die DDL-Befehle (`ALTER TABLE...`) eingetragen. Beim Datenumbau reicht dann ein Join.
+
+Für Publikationsmodelle, die nicht im Web GIS Client publiziert werden, gilt diese zweite Bedingung nicht. Falls keine Aufzähltypen im Publikationsmodell modelliert werden, kann man nicht nachträglich in der Metadatenbank Aufzähltypen «erfinden».
 
 === Seitenwagenmodell
 
