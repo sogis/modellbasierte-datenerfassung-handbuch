@@ -4,7 +4,7 @@
 
 In der Regel genügt eine Dokumentation im Modell selbst (Bemerkungen zu Topics, Klassen und Attributen). Bei grösseren Modellen und/oder z.B. im Rahmen von Erfassungsrichtlinien ist eine Dokumentation des Modelles in einem zusätzlichen Dokument notwendig. Die Vorlage für eine solche Dokumentation findet sich hier: `H:\BJSVW\Agi\KGDM\Vorlagen\Modelldokumentation_Vorlage_v01.docx`.
 
-Die Bemerkungen im Modell zu Topics, Klassen und Attributen werden beim Anlegen der Tabellen in der Datenbank automatisch übernommen und als Kommentar zu Tabellen und Attributen geführt. Kommentare zu einem einzelnen Aufzähltypwert wird in die Spalte `description` in der jeweiligen Aufzähltyp-Tabelle gemappt. Damit steht immer auch ein «schöner» Text zur Verfügung und beim Datenumbau in das Pub-Modell muss nicht mit `replace` und/oder `CASE/WHEN` gearbeitet werden.
+Die Bemerkungen im Modell zu Topics, Klassen und Attributen werden beim Anlegen der Tabellen in der Datenbank automatisch übernommen und als Kommentar zu Tabellen und Attributen geführt. Kommentare zu einem einzelnen Aufzähltypwert werden in die Spalte `description` in der jeweiligen Aufzähltyp-Tabelle gemappt (nicht zu Verwechseln mit dem Metaattribut `ili2db.dispName`).
 
 Zusätzlich zu den INTERLIS-Objekten muss das Schema in der Datenbank kommentiert werden und falls immer möglich mit Auskunftspersonen (E-Mail-Adressen) hinterlegt werden, z.B.:
 
