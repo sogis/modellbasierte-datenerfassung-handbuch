@@ -79,7 +79,7 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #405:: Monate sind als Wertebereich 1 .. 12 mit der Einheit (Unit) `M` zu definieren.
 
-#406:: Daten sind als `XMLDate` zu definieren. 
+#406:: Daten (Datum) sind als `XMLDate` zu definieren. 
 
 === Einschränkungen zum Gebrauch von INTERLIS 2.3
 
