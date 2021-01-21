@@ -93,9 +93,8 @@ GRANT USAGE ON SCHEMA afu_abbaustellen_pub TO afu_abbaustellen_pub_read, ogc_ser
 GRANT SELECT ON TABLE afu_abbaustellen_pub.abbaustelle TO afu_abbaustellen_pub_read,ogc_server,sogis_service
 ;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_abbaustellen_pub TO gretl
-
 ;
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA awjf_biotopbaeume_pub TO gretl
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_abbaustellen_pub TO gretl
 ;
 ```
 Die Rolle `public` hat keine Rechte. Die Rolle `afu_abbaustellen_pub_read` hat Leserechte auf das Schema.
