@@ -683,12 +683,11 @@ CREATE ROLE afu_abbaustellen_pub_read
 ;
 GRANT USAGE ON SCHEMA afu_abbaustellen_pub TO afu_abbaustellen_pub_read, ogc_server, sogis_service, gretl
 ;
-GRANT SELECT ON TABLE afu_abbaustellen_pub.abbaustelle TO afu_abbaustellen_pub_read,ogc_server,sogis_service
+GRANT SELECT ON TABLE afu_abbaustellen_pub.abbaustelle TO afu_abbaustellen_pub_read, ogc_server, sogis_service
 ;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_abbaustellen_pub TO gretl
-
 ;
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA awjf_biotopbaeume_pub TO gretl
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_abbaustellen_pub TO gretl
 ;</code></pre>
 </div>
 </div>
@@ -713,7 +712,7 @@ GRANT USAGE ON SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write, af
 ;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write
 ;
-GRANT SELECT ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_read
+GRANT SELECT ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_read, gretl
 ;
 GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write
 ;
@@ -724,7 +723,7 @@ GRANT afu_gefahrenkartierung_write TO vumaavat, vumaakau
 </div>
 </div>
 <div class="paragraph">
-<p>Die Rolle <code>public</code> hat keine Rechte. Für die Lese- und Schreiberechte weden die Rollen <code>afu_gefahrenkartierung_write</code> und <code>afu_gefahrenkartierung_read</code> erstellt. Falls ein GRETL-job auf die Daten zugreift, muss der Rolle <code>gretl</code> Leserechte vergeben werden.</p>
+<p>Die Rolle <code>public</code> hat keine Rechte. Für die Lese- und Schreiberechte weden die Rollen <code>afu_gefahrenkartierung_write</code> und <code>afu_gefahrenkartierung_read</code> erstellt.</p>
 </div>
 <div class="paragraph">
 <p>Schema darf nur gesamtes Amt sehen:</p>
@@ -812,7 +811,7 @@ GRANT afu_igel_read TO bjsvw, bdafu
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-21 15:33:36 UTC
+Last updated 2021-01-22 09:07:22 UTC
 </div>
 </div>
 </body>
