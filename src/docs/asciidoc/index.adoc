@@ -1,26 +1,31 @@
 // header file for HHGDAC AsciiDoc CheatSheet
 //
 = Modellbasierte Datenerfassung - Handbuch  
+:encoding: utf-8
 :toc: right
 :toc-title: Inhaltsverzeichnis 
-:imagesdir: ./images
 :author_name: Amt für Geoinformation Kanton Solothurn
 :author_email: agi@bd.so.ch
 :author: {author_name}
 :email: {author_email}
-:revnumber: {project-version}
+:title-page:
 :sectnums:
+:chapter-label:
+:sectlinks:
+:sectanchors:
+:revdate: {docdate}
+:figure-caption: Abbildung
 
-include::chapter/einleitung.adoc[]
+include::src/docs/asciidoc/chapter/einleitung.adoc[]
 
-include::chapter/modelltypen.adoc[]
+include::src/docs/asciidoc/chapter/modelltypen.adoc[]
 
-include::chapter/modellierungsprozess.adoc[]
+include::src/docs/asciidoc/chapter/modellierungsprozess.adoc[]
 
-include::chapter/modelldokumentation-und-ablage.adoc[]
+include::src/docs/asciidoc/chapter/modelldokumentation-und-ablage.adoc[]
 
-include::chapter/werkzeuge.adoc[]
+include::src/docs/asciidoc/chapter/werkzeuge.adoc[]
 
-include::chapter/modellierungsregeln.adoc[]
+include::src/docs/asciidoc/chapter/modellierungsregeln.adoc[]
 
-include::chapter/historisierung.adoc[]
+include::src/docs/asciidoc/chapter/historisierung.adoc[]

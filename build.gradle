@@ -1,63 +1,81 @@
-import org.asciidoctor.gradle.AsciidoctorTask
-
 plugins {
-    id "org.asciidoctor.convert" version "1.5.6"
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+    id 'org.asciidoctor.jvm.pdf' version '3.3.2'
+    id "de.undercouch.download" version "4.1.2"
 }
 
 apply from: "$rootDir/gradle/versioning.gradle"
-apply plugin: 'groovy'
 
-dependencies {
-    testCompile(
-        'junit:junit:4.12',
-        'org.codehaus.groovy:groovy-all:2.4.9',
-        'org.spockframework:spock-core:1.1-groovy-2.4'
-    )
-    asciidoctor 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.16'
-}
-
-asciidoctorj {
-    version = '1.5.8.1'
-}
-
-ext {
-    currentDate = new Date().format("d. MMM yyyy")
+repositories {
+    jcenter()
+    maven { url 'https://rubygems-proxy.torquebox.org/releases' }
+    mavenCentral()
 }
 
 asciidoctor {
-    attributes = [
-        doctype: 'book',
-        icons: 'font',
-        sectlink: true,
-        sectanchors: true,
-        numbered: true,
-        'source-highlighter': 'coderay',
-        'currentDate': "$currentDate"
-   ]
+    sourceDir  file('src/docs/asciidoc')
+    outputDir  file('build/docs')
+
 }
 
-tasks.withType(AsciidoctorTask) { docTask ->
-
+asciidoctorj {  // or asciidoctor.asciidoctorj
     attributes \
-          'source-highlighter': 'coderay',
-          'toc': 'right',
-          'icons': 'font',
-          'sourceDir': "$projectDir/src/",
-          'project-version' : project.version.toString()
+        revnumber : project.version,
+        imagesdir : "images",
+        stylesheet : file('./sogis.css')
 
-    // good to see what the build is doing...
-    logDocuments = true
+   options doctype: 'book', ruby: 'erubis'
 }
 
-task generatePDF (
-    type: AsciidoctorTask,
-    description: 'use pdf as asciidoc backend') {
+pdfThemes {
+    github 'sogis-frutiger', { 
+        organisation = 'sogis' 
+        repository = 'sogis-docs-asciidoctor-themes' 
+        relativePath = 'sogis-frutiger' 
+        branch = 'master' 
+    }
+}
 
-    backends = ['pdf']
+asciidoctorPdf {
     attributes \
-        'pdf-stylesdir': "$projectDir/src/docs/asciidoc/theme",
-        'pdf-style': 'custom',
-        'pdf-fontsdir': "$projectDir/src/docs/asciidoc/theme"
+        imagesdir : "src/docs/asciidoc/images"
+    theme 'sogis-frutiger'
+    fontsDir file("fonts/")
+    doLast {
+        file("${outputDir}/master.pdf").renameTo("${outputDir}/modellierungshandbuch+.pdf")
+    }
 }
 
-defaultTasks 'clean', 'asciidoctor'
+task downloadCss(type: Download) {
+    src([
+        'https://raw.githubusercontent.com/sogis/sogis-docs-asciidoctor-themes/master/sogis-css/sogis.css'
+    ])
+    // Falls nur eine Datei heruntergeladen wird, wird kein Verzeichnis erstellt, sondern die 
+    // Datei direkt gespeichert.
+    dest file("./sogis.css")
+}
+
+task deleteCss(type: Delete) {
+    delete './sogis.css'
+}
+
+asciidoctor.dependsOn downloadCss
+asciidoctor.finalizedBy deleteCss
+
+// Fonts müssen vorhanden sein und können nicht mit der Theme mitgeliefert werden.
+task downloadFonts(type: Download) {
+    src([
+        'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-normal.ttf',
+        'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-bold.ttf',
+        'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-italic.ttf',
+        'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-bold_italic.ttf'
+    ])
+    dest file("fonts/")
+}
+
+task deleteFonts(type: Delete) {
+    delete 'fonts'
+}
+
+asciidoctorPdf.dependsOn downloadFonts
+asciidoctorPdf.finalizedBy deleteFonts
