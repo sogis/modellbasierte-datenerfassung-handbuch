@@ -8,7 +8,7 @@ Die Bemerkungen im Modell zu Topics, Klassen und Attributen werden beim Anlegen 
 
 Zusätzlich zu den INTERLIS-Objekten muss das Schema in der Datenbank kommentiert werden und falls immer möglich mit Auskunftspersonen (E-Mail-Adressen) hinterlegt werden, z.B.:
 
-`Dieses Schema wird für die Erfassung der Hoheitsgrenzen verwendet. Fragen: noemi.sturm@bd.so.ch, stefan.ziegler@bd.so.ch.`
+`Dieses Schema wird für die Erfassung der Hoheitsgrenzen verwendet. Fragen: stefan.ziegler@bd.so.ch.`
     
 Dies erfolgt im DDL-Skript in welchem auch die Rechte auf den Tabellen angepasst werden.
 

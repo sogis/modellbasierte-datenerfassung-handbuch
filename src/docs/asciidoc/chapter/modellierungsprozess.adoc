@@ -22,148 +22,15 @@ _Verantwortung: Dienststelle_
 
 Die Dienststellen müssen zwingend das Modell verstehen und reviewen.
 
-=== Testen
+=== Entwicklung und Testen
 
 _Verantwortung: AGI und Dienststelle_
 
-**Hinweise:**
+Schemen und Tabellen in der Datenbank werden mit Schema-Jobs erstellt. Analog den «normalen» GRETL-Jobs werden sie in einem https://github.com/sogis/schema-jobs[Github-Repository] verwaltet. Das Repository ist im Gegensatz zum GRETL-Jobs-Repository geschützt.
 
-- Es wird nur noch der Ablauf mit ili2pg-v4 behandelt. Für ili2pg-v3 siehe ältere Versionen des Handbuchs.
-- Informationen zur lokalen Entwicklungsumgebung inkl. dem einfachen Starten von (leeren) Pub- und Edit-DB und Import der aktuellen DB-Rollen finden sich hier https://github.com/sogis/gretljobs[GRETL-Jobs-README.md].
+Die Verwendung der Schema-Jobs ist im https://github.com/sogis/schema-jobs/blob/main/README.md[README.md] des Repository klar und ausführlich beschrieben.
 
-Die Dienststelle muss das Modell in einer Testumgebung zusammen mit einem konfiguriertem QGIS-Projekt testen können. Dieser Schritt ist essentiell, da jede Anpassung am Modell Aufwand verursacht.
-
-Mit ili2pg-v4 wird das Schema nicht direkt durch `ili2pg` in der Datenbank erzeugt, sondern es wird zuerst eine SQL-Datei mit den DDL-Befehlen erstellt. 
-
-Der GDI ist mittels Ticket (im dazugehörigen Projekt/Auftrag) sämtliche benötigten Informationen zu kommen zu lassen:
-
-- `ili2pg_createschema.sh`
-- Durch ili2pg erzeugte SQL-Datei: `<schema_name>.sql`
-- `postscript.sql` (`prescript.sql` ist in der Regel nicht mehr notwendig)
-- INTERLIS-Datenmodell (*.ili), falls noch nicht in der Modellablage publiziert.
-
-==== ili2pg_createschema.sh
-```
-java -jar /usr/local/ili2pg-4.3.1/ili2pg.jar \
---dbschema <Schema Name> --models <Modell Name> \
---defaultSrsCode 2056 --createGeomIdx --createFk --createFkIdx --createUnique --createEnumTabs --beautifyEnumDispName --createMetaInfo --createNumChecks --nameByTopic --strokeArcs \
---createBasketCol --createDatasetCol \
---createscript <Schema Name>.sql
-```
-
-Es handelt sich um den eigentlichen ili2pg-Befehl zum Erzeugen des Schemas und der Tabellen. Die Optionen sind in der Regel nicht zu ändern. Falls sie geändert werden müssen, muss dies im Ticket begründet werden. Er dient der GDI, um ggf. das SQL-Skript auch selber herstellen zu können. Für das lokale Entwickeln lohnt es sich entweder die identische ili2pg-Version zu installieren und/oder einen symbolischen Link zu machen, damit der Pfad im Shellskript nicht geändert werden muss.
-
-==== <schema_name>.sql-Datei
-Diese Datei wurde mit obigem Befehl erstellt und enthält das DDL zum Erzeugen des Schemas und der Tabellen (inkl. einigen INSERT-Befehlen) in der Datenbank.
-
-==== postscript.sql
-In dieser Datei werden Rollen angelegt und Permissions gesetzt. Zudem werden auch Kommentare zum Schema gesetzt. Einige Beispiele:
-
-Öffentliches Schema in der Pub-DB:
-
-```
-COMMENT ON SCHEMA
-   awjf_biotopbaeume_pub
-IS
-   'Dieses Schema wird vom AWJF für die Publikation der Biotopbäume verwendet. Fragen: peter.senn@bd.so.ch, samuel.scheibler@vd.so.ch'
-;
-GRANT USAGE ON SCHEMA awjf_biotopbaeume_pub TO public, ogc_server, sogis_service, gretl
-;
-GRANT SELECT ON ALL TABLES IN SCHEMA awjf_biotopbaeume_pub TO public, ogc_server, sogis_service
-;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA awjf_biotopbaeume_pub TO gretl
-;
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA awjf_biotopbaeume_pub TO gretl
-;
-```
-Die Rollen `ogc_server` und `sogis_service` werden vom Web GIS Client benötigt. Die Rolle `gretl` ist für die Ausführung von GRETL-Jobs notwendig.
-
-Nicht-öffentliches Schema in der Pub-DB:
-
-```
-COMMENT ON SCHEMA 
-    afu_abbaustellen_pub 
-IS 
-    'Materialentnahmestellen (Abbau von Kies, Kalk- und Tonstein). Fragen: AfU-Abteilung Boden / Untergrund / Geologie'
-;
-CREATE ROLE afu_abbaustellen_pub_read
-;
-GRANT USAGE ON SCHEMA afu_abbaustellen_pub TO afu_abbaustellen_pub_read, ogc_server, sogis_service, gretl
-;
-GRANT SELECT ON TABLE afu_abbaustellen_pub.abbaustelle TO afu_abbaustellen_pub_read, ogc_server, sogis_service
-;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_abbaustellen_pub TO gretl
-;
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_abbaustellen_pub TO gretl
-;
-```
-Die Rolle `public` hat keine Rechte. Die Rolle `afu_abbaustellen_pub_read` hat Leserechte auf das Schema.
-
-Nicht-öffentliches Schema in der Edit-DB:
-
-```
-COMMENT ON SCHEMA
-    afu_gefahrenkartierung
-IS
-    'Erfassungsmodell der Gefahrenkartierungsdaten des Kantons Solothurn'
-;
-CREATE ROLE afu_gefahrenkartierung_read
-;
-CREATE ROLE afu_gefahrenkartierung_write
-;
-GRANT USAGE ON SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write, afu_gefahrenkartierung_read
-;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write
-;
-GRANT SELECT ON ALL TABLES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_read, gretl
-;
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_gefahrenkartierung TO afu_gefahrenkartierung_write
-;
-GRANT afu_gefahrenkartierung_read TO bjsvw
-;
-GRANT afu_gefahrenkartierung_write TO vumaavat, vumaakau
-;
-```
-Die Rolle `public` hat keine Rechte. Für die Lese- und Schreiberechte weden die Rollen `afu_gefahrenkartierung_write` und `afu_gefahrenkartierung_read` erstellt. 
-
-Schema darf nur gesamtes Amt sehen:
-```
-COMMENT ON SCHEMA
-   afu_igel
-IS
-   'Schema für den Import der heruntergeladenen JSON-Dateien. Standorte und Ställe aus IGEL-Applikation.'
-;
-CREATE ROLE afu_igel_read
-;
-GRANT USAGE ON SCHEMA afu_igel TO afu_igel_read, ogc_server, sogis_service, gretl
-;
-GRANT SELECT ON ALL TABLES IN SCHEMA afu_igel TO afu_igel_read, ogc_server, sogis_service
-;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA afu_igel TO gretl
-;
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA afu_igel TO gretl
-;
-GRANT afu_igel_read TO bjsvw, bdafu
-;
-```
-Obwohl die Ämter als Rollen in der Datenbank vorhanden sind, wird zusätzlich ein für das Schema spezifische Rolle erstellt `afu_igel_read`.
-
-==== prescript.sql
-Früher wurde im `prescript.sql` die `admin` Rolle gesetzt, welche die nachfolgenden SQL-Befehle ausgeführt hat. Dies ist nicht mehr notwendig resp. passiert als Option beim Ausführen des `psql`-Befehls. Das `prescript.sql` kann aber trotzdem hilfreich sein, z.B. um bestende Schemen umzubenennen:
-
-```
-ALTER SCHEMA <schema_name> RENAME TO <schema_name>_delete;
-```
-
-
-==== INTERLIS-Datenmodell
-Falls das Datenmodell noch nicht in der offiziellen http://geo.so.ch/models/[INTERLIS-Datenablage] vorhanden ist, muss es dem Ticket angehängt werden. Die Integration eines Modelles in die Ablage ist im https://github.com/sogis/sogis-interlis-repository/blob/master/docs/betriebs-_und_nachfuehrungshandbuch.md[Github-Repo] beschrieben.
-
-==== psql-Befehl
-```
-psql -h localhost -p 54321 -d edit -c "SET ROLE admin" --single-transaction -f prescript.sql -f agi_gb2av.sql -f postscript.sql
-```
-Dieser Befehl erstellt das Schema und führt das `pre-` und `postscript.sql` aus. Er kann lokal ausgeführt werden, um zu testen, ob das «Gesamtpaket» durchläuft.
+Ein Entwickler resp. eine Entwicklerin von Schema-Jobs darf Schemen auf der Test- und Integrationsumgebung selbständig erstellen und löschen. Das Deployment auf der Produktionsumgebung wird im Regelfall durch die GDI gemacht. Der GDI ist mittels Ticket sämtliche benötigten Informationen zu kommen zu lassen.
 
 === Integration in Produktionsumgebung
 
@@ -171,12 +38,10 @@ _Verantwortung: AGI_
 
 Die GDI integriert das abgenommene Modell in der Produktionsumgebung. Die QGIS-Projektdatei muss mit den entsprechenden Datenbankparametern angepasst werden. Die Integration erfolgt analog der Integration in die Testumgebung.
 
-Um eine möglichst hohe Datenqualität zu halten, werden die Daten täglich mit einem ili2pg-Befehl exportiert. Dafür wird ein Skript (in Zukunft GRETL-Job) verwendet. Nach der Integration ist das neue Modell in das Skript zu integrieren (GDI).
+Um eine Übersicht über die Qualität der Daten zu erhalten, werden sämtliche modellbasierten Daten mit einem einzigen GRETL-Job exportiert, validiert und nach S3 hochgeladen. In Zukunft wird diese Funktionalität zu den einzelnen GRETL-Jobs (d.h. pro Datenthema) wechseln. Nach einer Änderung des Modelles resp. bei einem neuen Modell muss der heute bestehende https://github.com/sogis/gretljobs/blob/main/agi_check_ili_export/datasets.groovy[GRETL-Job] angepasst werden.
 
 === Modelländerungen
 
 _Verantwortung: AGI und Dienststelle_
 
-Anforderungen an ein Modell können im Laufe der Zeit ändern. Sogenannte Modelländerungen sind zwar nicht gewünscht, aber sind nicht vermeidbar. Welche der einzelnen Modellierungsschritte nochmals durchgeführt werden müssen, hängt von der Änderung selbst ab. Da noch praktisch keine Erfahrungen vorliegen, wird davon ausgegangen, dass das bestehende Schema umbenannt wird und mit dem geänderten Modell ein neues Schema mit dem gleichen Namen erstellt wird. Die alten Daten können mittels GRETL-Job in die neuen Tabellen kopiert umgebaut werden. Ist die Modelländerung abgenommen, kann das alte (umbenannte) Schema gelöscht werden.
-
-Der Modelländerungsprozess hängt sicher auch davon ab, wie in Zukunft grundsätzlich Änderungen im AGDI vorgenommen werden sollen und können.
+Anforderungen an ein Modell können im Laufe der Zeit ändern. Sogenannte Modelländerungen sind zwar nicht gewünscht, aber sind nicht vermeidbar. Mit den Schema-Jobs wurde auch konsequent eine Versionierung in den Schemen-Namen eingeführt.

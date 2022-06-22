@@ -42,7 +42,7 @@ asciidoctorPdf {
     theme 'sogis-frutiger'
     fontsDir file("fonts/")
     doLast {
-        file("${outputDir}/master.pdf").renameTo("${outputDir}/modellierungshandbuch+.pdf")
+        file("${outputDir}/index.pdf").renameTo("${outputDir}/modellierungshandbuch.pdf")
     }
 }
 

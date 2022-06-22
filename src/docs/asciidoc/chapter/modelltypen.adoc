@@ -16,13 +16,12 @@ Aufgrund der Normalisierung eignen sich Daten im Erfassungsmodell nicht für die
 
 Es wird kein zusätzliches Datenabgabemodell angestrebt.
 
-Aufzähltypen: Damit Aufzähltypen sinnvoll im Web GIS Client eingesetzt werden können, müssen zwei Bedingungen erfüllt sein: Jeder Aufzähltyp-Wert muss ein Metaattribut `@ili2db.dispName` (siehe dazu auch die https://github.com/claeis/ili2db/blob/master/docs/ili2db.rst[offizielle Dokumentation von ili2pg]) erhalten und es braucht in der Datentabelle eine zusätzliche Spalte, die den Wert des Metaattributes (den «schönen» Text) zum Aufzähltyp-Wert speichert. 
+==== Aufzähltypen
+Damit Aufzähltypen sinnvoll im Web GIS Client eingesetzt werden können, müssen zwei Bedingungen erfüllt sein: Jeder Aufzähltyp-Wert muss ein Metaattribut `@ili2db.dispName` (siehe dazu auch die https://github.com/claeis/ili2db/blob/master/docs/ili2db.rst[offizielle Dokumentation von ili2pg]) erhalten und es braucht in der Datentabelle eine zusätzliche Spalte, die den Wert des Metaattributes (den «schönen» Text) zum Aufzähltyp-Wert speichert. 
 
-Für die erste Bedingung muss eine gepatchte Version des UML-Editors (`/opt/sogis_pic/software/uml-interlis-editor/umleditor-3.6.6.zip`) verwendet werden. Ohne diese gepatchte Version müssen die Metattribute händisch in der ili-Datei eingepflegt werden, was sehr fehleranfällig ist. In der gepatchten Version gibt es für die Metaattribute - ähnlich wie für normale Kommentare - Eingabefelder.
+Für die erste Bedingung muss eine gepatchte Version des UML-Editors (`/opt/sogis_pic/software/uml-interlis-editor/umleditor-3.6.6.zip`) verwendet werden. Ohne diese gepatchte Version müssen die Metattribute händisch in der ili-Datei eingepflegt werden, was sehr fehleranfällig ist (und nach einem erneuten Export aus dem UML-Editor wieder verloren gehen). In der gepatchten Version gibt es für die Metaattribute - ähnlich wie für normale Kommentare - Eingabefelder.
 
-Für die zweite Bedingung muss _ili2pg_ erweitert werden, damit die zusätzliche Spalte automatisch angelegt wird. Bis dies soweit ist, muss die zusätzliche Spalte `<Attributname>_txt` manuell angelegt werden. Dazu werden in der `postscript.sql`-Datei die DDL-Befehle (`ALTER TABLE...`) eingetragen. Beim Datenumbau reicht dann ein Join.
-
-Für Publikationsmodelle, die nicht im Web GIS Client publiziert werden, gilt diese zweite Bedingung nicht. Falls keine Aufzähltypen im Publikationsmodell modelliert werden, kann man nicht nachträglich in der Metadatenbank Aufzähltypen «erfinden».
+Für die zweite Bedingung muss beim Erstellen des Schemas die Option `--createEnumTxtCol` verwendet werden. Diese erstellt für Aufzähltypattribute eine zusätzliche Spalte `<Attributname>_txt`. Werden z.B. Daten in ein solches Schema importiert, werden die `@ili2db.dispName`-Werte der Aufzähltypwerte gespeichert. Im häufigen Fall einer Publikation von Daten aus der Edit-DB in die Pub-DB muss man sich jedoch selber um das Speichern der `@ili2db.dispName`-Werte kümmern. Am einfachsten ist ein Update-Befehl mit einem SqlExecutor-Task nach dem Db2Db-Task. Der Update-Befehl macht ein Join mit der Aufzähltyp-Tabelle (`--createEnumTabs`).
 
 === Seitenwagenmodell
 
@@ -30,12 +29,10 @@ Ein Seitenwagenmodell ist strukturell ein Publikationsmodell, liegt aber in der 
 
 === Validierungsmodell
 
-Das Validierungsmodell dient zur Definition von zusätzlichen Prüfungen mit der Software _ilivalidator_. In diesem Modell müssen zuerst Views erstellt werden. In diesen Views können mit Constraints die zusätzlichen Prüfungen definiert werden. Ein Beispiel findet sich http://geo.so.ch/models/ARP/SO_Nutzungsplanung_20171118_Validierung_20171120.ili[hier].
+Das Validierungsmodell dient zur Definition von zusätzlichen Prüfungen mit der Software _ilivalidator_. In diesem Modell müssen zuerst Views erstellt werden. In diesen Views können mit Constraints die zusätzlichen Prüfungen definiert werden. Ein Beispiel findet sich https://geo.so.ch/models/ARP/SO_Nutzungsplanung_20171118_Validierung_20211006.ili[hier].
 
 Weitergehende Informationen zu den Modelltypen gibt es in der https://intraso.rootso.org/verwaltung/bau-und-justiz/amt-fuer-geoinformation/dokumente-und-grundlagen/veranstaltungen-workshops/[Präsentation] des AGI vom 29. August 2017 zum Thema «Arbeiten mit einem Datenmodell».
 
 === Extension-Functions-Modell
 
-Zum jetzigen Zeitpunkt (2019-03-21) gibt es _ein_ Modell (`SO_FunctionsExt`), in welchem zusätzliche Prüffunktionen deklariert werden. Die Funktionen selber werden in Java https://github.com/sogis/ilivalidator-custom-functions[implementiert]. Der Modellnamen dieses Modelles ist statisch, damit nicht bei jedem neuen Release sämtliche Validierungsmodelle, welche dieses Modell importieren, nachgeführt werden müssen. Dies bedingt jedoch eine strenge Stabilität der Funktionssignaturen. 
-
-Das Modell `SO_FunctionsExt` muss noch in die offizielle INTERLIS-Modellablage des AGI migriert werden und befindet sich heute im Quellcode des ilivalidator-web-service.
+Zum jetzigen Zeitpunkt (2022-06-22) gibt es _ein_ Modell (`SO_FunctionsExt`), in welchem zusätzliche Prüffunktionen deklariert werden. Die Funktionen selber werden in Java https://github.com/sogis/ilivalidator-custom-functions[implementiert]. Der Modellnamen dieses Modelles ist statisch, damit nicht bei jedem neuen Release sämtliche Validierungsmodelle, welche dieses Modell importieren, nachgeführt werden müssen. Dies bedingt jedoch eine strenge Stabilität der Funktionssignaturen. 

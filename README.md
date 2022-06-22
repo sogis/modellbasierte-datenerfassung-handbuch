@@ -1,10 +1,13 @@
+[![modellierungshandbuch](https://github.com/sogis/modellbasierte-datenerfassung-handbuch/actions/workflows/main.yml/badge.svg)](https://github.com/sogis/modellbasierte-datenerfassung-handbuch/actions/workflows/main.yml)
+
 # modellbasierte-datenerfassung-handbuch
 Asciidoctor documentation repository für das Handbuch "modellbasierte Datenerfassung"
 
 ## System Requirements
 
-* gradle
-* java
+* Java
+* Gradle
+* AsciidoctorJ / AsciidoctorPDF
 
 ## General usage
 
@@ -16,13 +19,17 @@ git clone https://github.com/sogis/modellbasierte-datenerfassung-handbuch.git $H
 
 HTML-Output:
 ```
-gradle asciidoctor
+./gradlew asciidoctor
 ```
 
 PDF-Output:
 ```
-gradle generatePDF
+./gradlew asciidoctorPDF
 ```
+
+## Github pages
+
+https://sogis.github.io/modellbasierte-datenerfassung-handbuch/
 
 ## Setup Github pages
 
@@ -36,5 +43,3 @@ git add .
 git commit -a -m "First pages commit"
 git push origin gh-pages
 ```
-
-https://sogis.github.io/modellbasierte-datenerfassung-handbuch/

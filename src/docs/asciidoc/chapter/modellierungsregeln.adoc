@@ -4,7 +4,7 @@
 
 #101:: Modellierungssprache ist INTERLIS 2.3 gemäss Referenzhandbuch vom 13. April 2006.
 
-#102:: Für die Kontrolle der Datenmodelle wird der INTERLIS-Compiler Version 4.5.22 vom 7. April 2016 (oder höher) eingesetzt.
+#102:: Für die Kontrolle der Datenmodelle wird die aktuelle INTERLIS-Compiler Version eingesetzt.
 
 #103:: Der Namensraum (`AT` in der ili-Datei) für Modelle (`Issuer URI` in _UML/INTERLIS-Editor_) ist https://<AMT>.so.ch, wobei das entsprechende Amt angegeben wird.
 
@@ -87,15 +87,13 @@ Der Modellnamen des Validierungsmodelles und des Publikationsmodells wird analog
 
 #502:: Für `TEXT` muss immer eine konkrete Länge angegeben werden.
 
-#503:: Externe Objektkataloge und Codelisten dürfen nicht verwendet werden.
-
 === Konsistenzbedingungen
 
 #601:: Die Kardinalitäten von Rollen muss erfasst werden.
 
 #602:: UNIQUE-Bedingungen müssen, wo sinnvoll, erfasst werden.
 
-#603:: Den Objekten ist immer eine eindeutige Objekt-Identifikation zuzuweisen. Als OID muss `INTERLIS.UUIDOID` verwendet werden.
+#603:: Den Objekten ist immer eine eindeutige Objekt-Identifikation zuzuweisen. Als OID soll in der Regel `INTERLIS.UUIDOID` verwendet werden.
 
 === Darstellungsinformationen
 
