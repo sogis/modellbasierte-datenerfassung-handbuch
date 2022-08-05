@@ -295,7 +295,7 @@ code {
 <p>Damit Aufzähltypen sinnvoll im Web GIS Client eingesetzt werden können, müssen zwei Bedingungen erfüllt sein: Jeder Aufzähltyp-Wert muss ein Metaattribut <code>@ili2db.dispName</code> (siehe dazu auch die <a href="https://github.com/claeis/ili2db/blob/master/docs/ili2db.rst">offizielle Dokumentation von ili2pg</a>) erhalten und es braucht in der Datentabelle eine zusätzliche Spalte, die den Wert des Metaattributes (den «schönen» Text) zum Aufzähltyp-Wert speichert.</p>
 </div>
 <div class="paragraph">
-<p>Für die erste Bedingung muss eine gepatchte Version des UML-Editors (<code>/opt/sogis_pic/software/uml-interlis-editor/umleditor-3.6.6.zip</code>) verwendet werden. Ohne diese gepatchte Version müssen die Metattribute händisch in der ili-Datei eingepflegt werden, was sehr fehleranfällig ist (und nach einem erneuten Export aus dem UML-Editor wieder verloren gehen). In der gepatchten Version gibt es für die Metaattribute - ähnlich wie für normale Kommentare - Eingabefelder.</p>
+<p>Für die erste Bedingung muss mindestens UML-Editor grösser V3.9.0 verwendet werden. Diese Version erlaubt es für jedes Objekt beliebige Metaattribute zu erfassen.</p>
 </div>
 <div class="paragraph">
 <p>Für die zweite Bedingung muss beim Erstellen des Schemas die Option <code>--createEnumTxtCol</code> verwendet werden. Diese erstellt für Aufzähltypattribute eine zusätzliche Spalte <code>&lt;Attributname&gt;_txt</code>. Werden z.B. Daten in ein solches Schema importiert, werden die <code>@ili2db.dispName</code>-Werte der Aufzähltypwerte gespeichert. Im häufigen Fall einer Publikation von Daten aus der Edit-DB in die Pub-DB muss man sich jedoch selber um das Speichern der <code>@ili2db.dispName</code>-Werte kümmern. Am einfachsten ist ein Update-Befehl mit einem SqlExecutor-Task nach dem Db2Db-Task. Der Update-Befehl macht ein Join mit der Aufzähltyp-Tabelle (<code>--createEnumTabs</code>).</p>
@@ -328,8 +328,8 @@ code {
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.0.5<br>
-Last updated 2022-06-22 13:48:04 UTC
+Version 1.0.6<br>
+Last updated 2022-08-05 04:28:03 UTC
 </div>
 </div>
 </body>
