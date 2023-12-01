@@ -24,6 +24,6 @@ Mit `ili2gpkg` und `ili2fgdb` stehen Derivate für GeoPackage und FileGeodatabas
 
 Dank des https://github.com/claeis/ilivalidator>[ilivalidators] kann eine INTERLIS-Transferdatei auf ihre Modellkonformität geprüft werden. Die Software ist ebenfalls in _ili2pg_ eingebaut und ist standardmässig aktiviert und muss mit `--disableValidation` ausgeschaltet werden.
 
-=== QGIS-Projektgenerator
+=== QGIS Model Baker
 
-Das QGIS-Plugin «QGIS-Projektgenerator» erstellt anhand eines INTERLIS-Modelles resp. der in der Datenbank angelegten Tabellen automatisch ein QGIS-Projekt mit bereits vorkonfigurierten und verknüpften Formularen. 
+Das QGIS-Plugin https://opengisch.github.io/QgisModelBaker/[QGIS Model Baker] erstellt anhand eines INTERLIS-Modelles resp. der in der Datenbank angelegten Tabellen automatisch ein QGIS-Projekt mit bereits vorkonfigurierten und verknüpften Formularen. 
