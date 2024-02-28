@@ -259,8 +259,8 @@ code {
 <div class="details">
 <span id="author" class="author">Amt für Geoinformation Kanton Solothurn</span><br>
 <span id="email" class="email"><a href="mailto:agi@bd.so.ch">agi@bd.so.ch</a></span><br>
-<span id="revnumber">version 1.0.8,</span>
-<span id="revdate">2023-12-01</span>
+<span id="revnumber">version 1.0.9,</span>
+<span id="revdate">2024-02-28</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Inhaltsverzeichnis</div>
@@ -393,6 +393,9 @@ code {
 <div class="paragraph">
 <p>Weitergehende Informationen zu den Modelltypen gibt es in der <a href="https://intraso.rootso.org/verwaltung/bau-und-justiz/amt-fuer-geoinformation/dokumente-und-grundlagen/veranstaltungen-workshops/">Präsentation</a> des AGI vom 29. August 2017 zum Thema «Arbeiten mit einem Datenmodell».</p>
 </div>
+<div class="paragraph">
+<p>Zu einem Validierungsmodell gehört auch immer eine Konfigurations- und Metakonfigurationsdatei.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_extension_functions_modell"><a class="anchor" href="#_extension_functions_modell"></a><a class="link" href="#_extension_functions_modell">2.5. Extension-Functions-Modell</a></h3>
@@ -504,6 +507,9 @@ code {
 </div>
 <div class="paragraph">
 <p>Die UML-Datei wird ebenfalls in der Modellablage abgelegt. Die UML-Datei ist der Master. Es dürfen keine Änderungen nur in der INTERLIS-Modelldatei vorgenommen werden.</p>
+</div>
+<div class="paragraph">
+<p>Ilivalidator-Konfigurationsdateien (Validierungsmodell, Config-Ini- und Meta-Config-Ini-Datei) werden auch in der Modellablage im jeweiligen Amtsordner abgelegt.</p>
 </div>
 </div>
 <div class="sect2">
@@ -641,25 +647,42 @@ code {
 <dl>
 <dt class="hdlist1">#203</dt>
 <dd>
-<p>Die Metaattribute <code>furtherInformation</code> (in der Regel der Link zur UML-Datei) und <code>technicalContact</code> (<code>mailto:agi@bd.so.chg</code>) sind im Header der Modelldatei (via UML-Editor) zu erfassen.</p>
+<p>Die Benennung von Konfigurationsdateien (*.ini) erfolgt nach folgendem Schema:</p>
 </dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>&lt;Datenmodellname&gt;[_&lt;Kontext&gt;]_v*[-meta].ini</p>
+</div>
+<div class="paragraph">
+<p>Datenmodellname: Name des Stamm-/Kernmodelles.</p>
+</div>
+<div class="paragraph">
+<p>Kontext: Kontext für das die Konfigurationsdatei gilt. Z.B. IPW, Drainagen etc. Kann auch leer sein.</p>
+</div>
+<div class="dlist">
+<dl>
 <dt class="hdlist1">#204</dt>
 <dd>
-<p>Die Änderungshistorie wird im Header der Modelldatei (via UML-Editor) dokumentiert.</p>
+<p>Die Metaattribute <code>furtherInformation</code> (in der Regel der Link zur UML-Datei) und <code>technicalContact</code> (<code>mailto:agi@bd.so.chg</code>) sind im Header der Modelldatei (via UML-Editor) zu erfassen.</p>
 </dd>
 <dt class="hdlist1">#205</dt>
 <dd>
-<p>Für die Formatierung der Modelldateien dürfen keine Tabulatoren verwendet werden.</p>
+<p>Die Änderungshistorie wird im Header der Modelldatei (via UML-Editor) dokumentiert.</p>
 </dd>
 <dt class="hdlist1">#206</dt>
 <dd>
-<p>In Kommentaren sollen Umlaute verwendet werden. Das Encoding der ili-Datei ist UTF-8.</p>
+<p>Für die Formatierung der Modelldateien dürfen keine Tabulatoren verwendet werden.</p>
 </dd>
 <dt class="hdlist1">#207</dt>
 <dd>
-<p>Die Version (= Datum) des Modelles ist (via UML-Editor) anzugeben. <code>VERSION "2017-01-19"</code></p>
+<p>In Kommentaren sollen Umlaute verwendet werden. Das Encoding der ili-Datei ist UTF-8.</p>
 </dd>
 <dt class="hdlist1">#208</dt>
+<dd>
+<p>Die Version (= Datum) des Modelles ist (via UML-Editor) anzugeben. <code>VERSION "2017-01-19"</code></p>
+</dd>
+<dt class="hdlist1">#209</dt>
 <dd>
 <p>Jedes Attribut muss mit einem Kommentar versehen werden, welcher das Attribut sinnvoll beschreibt.</p>
 </dd>
@@ -846,8 +869,8 @@ END SO_ARP_Nutzungsplanung_20171118.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.0.8<br>
-Last updated 2023-12-01 08:37:13 UTC
+Version 1.0.9<br>
+Last updated 2024-02-28 10:00:16 UTC
 </div>
 </div>
 </body>
