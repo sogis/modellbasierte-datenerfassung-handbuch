@@ -33,6 +33,8 @@ Das Validierungsmodell dient zur Definition von zusätzlichen Prüfungen mit der
 
 Weitergehende Informationen zu den Modelltypen gibt es in der https://intraso.rootso.org/verwaltung/bau-und-justiz/amt-fuer-geoinformation/dokumente-und-grundlagen/veranstaltungen-workshops/[Präsentation] des AGI vom 29. August 2017 zum Thema «Arbeiten mit einem Datenmodell».
 
+Zu einem Validierungsmodell gehört auch immer eine Konfigurations- und Metakonfigurationsdatei.
+
 === Extension-Functions-Modell
 
 Zum jetzigen Zeitpunkt (2022-06-22) gibt es _ein_ Modell (`SO_FunctionsExt`), in welchem zusätzliche Prüffunktionen deklariert werden. Die Funktionen selber werden in Java https://github.com/sogis/ilivalidator-custom-functions[implementiert]. Der Modellnamen dieses Modelles ist statisch, damit nicht bei jedem neuen Release sämtliche Validierungsmodelle, welche dieses Modell importieren, nachgeführt werden müssen. Dies bedingt jedoch eine strenge Stabilität der Funktionssignaturen. 

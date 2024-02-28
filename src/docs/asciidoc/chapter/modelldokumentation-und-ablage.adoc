@@ -18,6 +18,8 @@ Durch die Publikation in einer Modellablage und der Verknüpfung der verschieden
 
 Die UML-Datei wird ebenfalls in der Modellablage abgelegt. Die UML-Datei ist der Master. Es dürfen keine Änderungen nur in der INTERLIS-Modelldatei vorgenommen werden. 
 
+Ilivalidator-Konfigurationsdateien (Validierungsmodell, Config-Ini- und Meta-Config-Ini-Datei) werden auch in der Modellablage im jeweiligen Amtsordner abgelegt. 
+
 
 === Weitere Unterlagen
 
