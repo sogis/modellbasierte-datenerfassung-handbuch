@@ -1,14 +1,12 @@
 plugins {
-    id 'org.asciidoctor.jvm.convert' version '3.3.2'
-    id 'org.asciidoctor.jvm.pdf' version '3.3.2'
-    id "de.undercouch.download" version "4.1.2"
+    id 'org.asciidoctor.jvm.convert' version '4.0.3'
+    //id 'org.asciidoctor.jvm.pdf' version '4.0.3'
+    id "de.undercouch.download" version "5.6.0"
 }
 
 apply from: "$rootDir/gradle/versioning.gradle"
 
 repositories {
-    jcenter()
-    maven { url 'https://rubygems-proxy.torquebox.org/releases' }
     mavenCentral()
 }
 
@@ -16,39 +14,78 @@ asciidoctor {
     sourceDir  file('src/docs/asciidoc')
     outputDir  file('build/docs')
 
-}
 
-asciidoctorj {  // or asciidoctor.asciidoctorj
-    attributes \
-        revnumber : project.version,
-        imagesdir : "images",
-        stylesheet : file('./sogis.css')
+    asciidoctorj {
+        //version = '2.5.13' // Default wird 2.5.7 verwendet.
 
-   options doctype: 'book', ruby: 'erubis'
-}
+        attributes 'encoding': 'utf-8',
+            'toc' : 'left',
+            'toc-title': 'Inhaltsverzeichnis',
+            'author': 'Amt für Geoinformation Kanton Solothurn',
+            'email': 'agi@bd.so.ch',
+            'chapter-label': '',
+            'sectnums':  '',
+            'sectlinks': '',
+            'sectanchors': '',
+            'figure-caption': 'Abbildung',
+            'stylesheet' : file('./sogis.css')
 
-pdfThemes {
-    github 'sogis-frutiger', { 
-        organisation = 'sogis' 
-        repository = 'sogis-docs-asciidoctor-themes' 
-        relativePath = 'sogis-frutiger' 
-        branch = 'master' 
+        options doctype: 'book', ruby: 'erubis'
     }
 }
 
-asciidoctorPdf {
-    attributes \
-        imagesdir : "src/docs/asciidoc/images"
-    theme 'sogis-frutiger'
-    fontsDir file("fonts/")
-    doLast {
-        file("${outputDir}/index.pdf").renameTo("${outputDir}/modellierungshandbuch.pdf")
-    }
+/*
+asciidoctorj {
+    //version = '2.5.13' 
+
+    attributes 'toc' : 'left',
+        'toc-title': 'Inhaltsverzeichnis' 
+        //revnumber = project.version
 }
+*/
+
+/*
+asciidoctor {
+  asciidoctorj {
+
+      attributes toc : "left"
+      //options = [ doctype: 'article' ]
+  }
+}
+*/
+
+
+// asciidoctorj {  // or asciidoctor.asciidoctorj
+//     attributes \
+//         revnumber : project.version,
+//         imagesdir : "images",
+//         stylesheet : file('./sogis.css')
+
+//    options doctype: 'book', ruby: 'erubis'
+// }
+
+// pdfThemes {
+//     github 'sogis-frutiger', { 
+//         organisation = 'sogis' 
+//         repository = 'sogis-docs-asciidoctor-themes' 
+//         relativePath = 'sogis-frutiger' 
+//         branch = 'master' 
+//     }
+// }
+
+// asciidoctorPdf {
+//     attributes \
+//         imagesdir : "src/docs/asciidoc/images"
+//     theme 'sogis-frutiger'
+//     fontsDir file("fonts/")
+//     doLast {
+//         file("${outputDir}/index.pdf").renameTo("${outputDir}/modellierungshandbuch.pdf")
+//     }
+// }
 
 task downloadCss(type: Download) {
     src([
-        'https://raw.githubusercontent.com/sogis/sogis-docs-asciidoctor-themes/master/sogis-css/sogis.css'
+        'https://raw.githubusercontent.com/sogis/sogis-docs-asciidoctor-themes/master/html/sogis-simple/sogis.css'
     ])
     // Falls nur eine Datei heruntergeladen wird, wird kein Verzeichnis erstellt, sondern die 
     // Datei direkt gespeichert.
@@ -62,20 +99,20 @@ task deleteCss(type: Delete) {
 asciidoctor.dependsOn downloadCss
 asciidoctor.finalizedBy deleteCss
 
-// Fonts müssen vorhanden sein und können nicht mit der Theme mitgeliefert werden.
-task downloadFonts(type: Download) {
-    src([
-        'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-normal.ttf',
-        'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-bold.ttf',
-        'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-italic.ttf',
-        'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-bold_italic.ttf'
-    ])
-    dest file("fonts/")
-}
+// // Fonts müssen vorhanden sein und können nicht mit der Theme mitgeliefert werden.
+// task downloadFonts(type: Download) {
+//     src([
+//         'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-normal.ttf',
+//         'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-bold.ttf',
+//         'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-italic.ttf',
+//         'https://github.com/sogis/sogis-docs-asciidoctor-themes/raw/master/sogis-frutiger/fonts/frutiger-bold_italic.ttf'
+//     ])
+//     dest file("fonts/")
+// }
 
-task deleteFonts(type: Delete) {
-    delete 'fonts'
-}
+// task deleteFonts(type: Delete) {
+//     delete 'fonts'
+// }
 
-asciidoctorPdf.dependsOn downloadFonts
-asciidoctorPdf.finalizedBy deleteFonts
+// asciidoctorPdf.dependsOn downloadFonts
+// asciidoctorPdf.finalizedBy deleteFonts
