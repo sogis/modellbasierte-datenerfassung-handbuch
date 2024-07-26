@@ -36,3 +36,11 @@ jobs:
           BRANCH: gh-pages 
           FOLDER: build/docs/ 
           #CLEAN: true 
+
+      - name: Deploy pdf output 🚀
+        run: |
+          ls -la build/docs/asciidocPdf/
+          ./gradlew jreleaserRelease -s
+        env:
+          BUILD_NUMBER: ${{ env.GITHUB_RUN_NUMBER }}
+          JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

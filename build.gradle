@@ -2,6 +2,7 @@ plugins {
     id 'org.asciidoctor.jvm.convert' version '4.0.3'
     id 'org.asciidoctor.jvm.pdf' version '4.0.3'
     id "de.undercouch.download" version "5.6.0"
+    id 'org.jreleaser' version '1.13.1'
 }
 
 apply from: "$rootDir/gradle/versioning.gradle"
@@ -81,7 +82,7 @@ asciidoctorPdf {
     fontsDirs file("fonts/")
 
     doLast {
-        file("${outputDir}/master.pdf").renameTo("${outputDir}/oereb-handbuch.pdf")
+        file("${outputDir}/index.pdf").renameTo("${outputDir}/modellbasierte-datenerfassung.pdf")
     }
 }
 
@@ -105,4 +106,28 @@ asciidoctorPdf.finalizedBy deleteFonts
 
 def getDate() {
     return new Date().format('yyyy-MM-dd HH:mm')
+}
+
+jreleaser {
+    project {
+        name = 'modellbasierte-datenerfassung-handbuch'
+        description = 'ÖREB-Handbuch'
+        website = 'https://agi.so.ch'
+        authors = ['edigonzales']
+        license = 'MIT'
+        docsUrl = 'https://github.com/sogis/modellbasierte-datenerfassung-handbuch'
+    }
+    release {
+        github {
+            branch = 'master'
+            //owner = 'sogis'
+            overwrite = true
+            apiEndpoint = 'https://api.github.com'
+        }
+    }
+    files {
+        artifact {
+            path = 'build/docs/asciidocPdf/modellbasierte-datenerfassung.pdf'
+        }
+    }
 }
