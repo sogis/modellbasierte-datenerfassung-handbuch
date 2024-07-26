@@ -301,13 +301,13 @@ pre {
 <p><em>Verantwortung: AGI und Dienststelle</em></p>
 </div>
 <div class="paragraph">
-<p>Schemen und Tabellen in der Datenbank werden mit Schema-Jobs erstellt. Analog den «normalen» GRETL-Jobs werden sie in einem <a href="https://github.com/sogis/schema-jobs">Github-Repository</a> verwaltet. Das Repository ist im Gegensatz zum GRETL-Jobs-Repository geschützt.</p>
+<p>Schemen und Tabellen in der Datenbank werden mit Schema-Jobs erstellt. Analog den «normalen» GRETL-Jobs werden sie in einem <a href="https://github.com/sogis/schema-jobs">Github-Repository</a> verwaltet. Das Repository ist im Gegensatz zum GRETL-Jobs-Repository nicht öffentlich.</p>
 </div>
 <div class="paragraph">
 <p>Die Verwendung der Schema-Jobs ist im <a href="https://github.com/sogis/schema-jobs/blob/main/README.md">README.md</a> des Repository klar und ausführlich beschrieben.</p>
 </div>
 <div class="paragraph">
-<p>Ein Entwickler resp. eine Entwicklerin von Schema-Jobs darf Schemen auf der Test- und Integrationsumgebung selbständig erstellen und löschen. Das Deployment auf der Produktionsumgebung wird im Regelfall durch die GDI gemacht. Der GDI ist mittels Ticket sämtliche benötigten Informationen zu kommen zu lassen.</p>
+<p>Ein Entwickler resp. eine Entwicklerin von Schema-Jobs darf Schemen auf der Test- und Integrationsumgebung selbständig erstellen und löschen.</p>
 </div>
 </div>
 <div class="sect2">
@@ -316,10 +316,10 @@ pre {
 <p><em>Verantwortung: AGI</em></p>
 </div>
 <div class="paragraph">
-<p>Die GDI integriert das abgenommene Modell in der Produktionsumgebung. Die QGIS-Projektdatei muss mit den entsprechenden Datenbankparametern angepasst werden. Die Integration erfolgt analog der Integration in die Testumgebung.</p>
+<p>In der Produktionsumgebung kann in der Regel das Modell auch durch den Entwickler resp. die Entwicklerin integriert werden (ohne es an den Betrieb abzudelegieren). Die QGIS-Projektdatei muss mit den entsprechenden Datenbankparametern angepasst werden.</p>
 </div>
 <div class="paragraph">
-<p>Um eine Übersicht über die Qualität der Daten zu erhalten, werden sämtliche modellbasierten Daten mit einem einzigen GRETL-Job exportiert, validiert und nach S3 hochgeladen. In Zukunft wird diese Funktionalität zu den einzelnen GRETL-Jobs (d.h. pro Datenthema) wechseln. Nach einer Änderung des Modelles resp. bei einem neuen Modell muss der heute bestehende <a href="https://github.com/sogis/gretljobs/blob/main/agi_check_ili_export/datasets.groovy">GRETL-Job</a> angepasst werden.</p>
+<p>Eine Qualitätskontrolle der Daten wird durch den Publisher (momentan nur für öffentliche Daten) sichergestellt.</p>
 </div>
 </div>
 <div class="sect2">
@@ -336,8 +336,8 @@ pre {
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.0.18<br>
-Last updated 2024-07-26 11:27:27 UTC
+Version 2.0.19<br>
+Last updated 2024-07-26 12:45:16 UTC
 </div>
 </div>
 </body>
