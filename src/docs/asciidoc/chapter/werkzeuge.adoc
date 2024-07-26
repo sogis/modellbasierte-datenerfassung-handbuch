@@ -4,25 +4,27 @@ Für die verschiedenen Modellierungsprozesse stehen passende Werkzeuge zur Verf�
 
 === UML/INTERLIS-Editor
 
-Der http://umleditor.org/[UML/INTERLIS-Editor] dient der Modellierung von INTERLIS-Modellen mittels UML-Diagrammen. Er benötigt Java und kann lokal installiert und verwendet werden. Die Lernkurve ist relativ steil und die Bedienung gewöhnungsbedürftig. Mit dem Verständnis von INTERLIS als Modellierungssprache wächst auch die Verständnis für die Bedienung des _UML/INTERLIS-Editors_. Als Einstiegshilfe dient die Wikiseite https://geoweb.rootso.org/redmine/projects/sogiswiki/wiki/Modelle_modellieren[Modelle modellieren].
+Der http://umleditor.org/[UML/INTERLIS-Editor] dient der Modellierung von INTERLIS-Modellen mittels UML-Diagrammen. Er benötigt Java und kann lokal installiert und verwendet werden. Die Lernkurve ist relativ steil und die Bedienung gewöhnungsbedürftig. Mit dem Verständnis von INTERLIS als Modellierungssprache wächst auch die Verständnis für die Bedienung des _UML/INTERLIS-Editors_.
 
 === ili2c
 
 Mittels https://sourceforge.net/projects/umleditor/files/ili2c/[INTERLIS-Compiler] kann das INTERLIS-Modell syntaktisch geprüft werden. Die Software ist bereits im _UML/INTERLIS-Editor_ eingebaut und muss nicht zwingend separat installiert werden.
 
-Folgende Version ist zu verwenden: 4.5.22 oder höher
+Es sollte wenn immer möglich die gleiche Version, wie die in GRETL integrierte Version, verwendet werden.
 
 === ili2pg
 
 http://www.eisenhutinformatik.ch/interlis/ili2pg/[Ili2pg] erstellt aufgrund eines INTERLIS-Modelles ein Schema mit leeren Tabellen in einer PostgreSQL/PostGIS-Datenbank. Es kann auch INTERLIS-Transferdateien importieren oder aus einer Datenbank Daten in eine Transferdatei exportieren.
 
-Es wird Version 4.3.1 verwendet.
+Es sollte wenn immer möglich die gleiche Version, wie die in GRETL integrierte Version, verwendet werden.
 
 Mit `ili2gpkg` und `ili2fgdb` stehen Derivate für GeoPackage und FileGeodatabase zur Verfügung.
 
 === ilivalidator
 
 Dank des https://github.com/claeis/ilivalidator>[ilivalidators] kann eine INTERLIS-Transferdatei auf ihre Modellkonformität geprüft werden. Die Software ist ebenfalls in _ili2pg_ eingebaut und ist standardmässig aktiviert und muss mit `--disableValidation` ausgeschaltet werden.
+
+Es sollte wenn immer möglich die gleiche Version, wie die in GRETL integrierte Version, verwendet werden.
 
 === QGIS Model Baker
 

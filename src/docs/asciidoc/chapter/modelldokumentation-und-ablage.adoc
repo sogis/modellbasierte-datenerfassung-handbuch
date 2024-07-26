@@ -18,8 +18,9 @@ Durch die Publikation in einer Modellablage und der Verknüpfung der verschieden
 
 Die UML-Datei wird ebenfalls in der Modellablage abgelegt. Die UML-Datei ist der Master. Es dürfen keine Änderungen nur in der INTERLIS-Modelldatei vorgenommen werden. 
 
-Ilivalidator-Konfigurationsdateien (Validierungsmodell, Config-Ini- und Meta-Config-Ini-Datei) werden auch in der Modellablage im jeweiligen Amtsordner abgelegt. 
+Ilivalidator-Konfigurationsdateien (Validierungsmodell, Config-Ini- und Meta-Config-Ini-Datei) werden auch in der Modellablage im jeweiligen Amtsordner abgelegt. Dadurch reicht eine simple Angabe mit "ilidata:xxx.ini", um die Validierung resp. den Validator überall zu steuern.
 
+Die QGIS-Projekte werden im QGIS-Projekte-Repository[https://github.com/sogis/qgis-projects] gespeichert. Das Repository ist nicht öffentlich. Zukünftig soll vermehrt der https://geo.so.ch/usabilityhub/[UsabILIty-Hub] verwendet werden.
 
 === Weitere Unterlagen
 

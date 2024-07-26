@@ -26,19 +26,19 @@ Die Dienststellen müssen zwingend das Modell verstehen und reviewen.
 
 _Verantwortung: AGI und Dienststelle_
 
-Schemen und Tabellen in der Datenbank werden mit Schema-Jobs erstellt. Analog den «normalen» GRETL-Jobs werden sie in einem https://github.com/sogis/schema-jobs[Github-Repository] verwaltet. Das Repository ist im Gegensatz zum GRETL-Jobs-Repository geschützt.
+Schemen und Tabellen in der Datenbank werden mit Schema-Jobs erstellt. Analog den «normalen» GRETL-Jobs werden sie in einem https://github.com/sogis/schema-jobs[Github-Repository] verwaltet. Das Repository ist im Gegensatz zum GRETL-Jobs-Repository nicht öffentlich.
 
 Die Verwendung der Schema-Jobs ist im https://github.com/sogis/schema-jobs/blob/main/README.md[README.md] des Repository klar und ausführlich beschrieben.
 
-Ein Entwickler resp. eine Entwicklerin von Schema-Jobs darf Schemen auf der Test- und Integrationsumgebung selbständig erstellen und löschen. Das Deployment auf der Produktionsumgebung wird im Regelfall durch die GDI gemacht. Der GDI ist mittels Ticket sämtliche benötigten Informationen zu kommen zu lassen.
+Ein Entwickler resp. eine Entwicklerin von Schema-Jobs darf Schemen auf der Test- und Integrationsumgebung selbständig erstellen und löschen. 
 
 === Integration in Produktionsumgebung
 
 _Verantwortung: AGI_
 
-Die GDI integriert das abgenommene Modell in der Produktionsumgebung. Die QGIS-Projektdatei muss mit den entsprechenden Datenbankparametern angepasst werden. Die Integration erfolgt analog der Integration in die Testumgebung.
+In der Produktionsumgebung kann in der Regel das Modell auch durch den Entwickler resp. die Entwicklerin integriert werden (ohne es an den Betrieb abzudelegieren). Die QGIS-Projektdatei muss mit den entsprechenden Datenbankparametern angepasst werden.
 
-Um eine Übersicht über die Qualität der Daten zu erhalten, werden sämtliche modellbasierten Daten mit einem einzigen GRETL-Job exportiert, validiert und nach S3 hochgeladen. In Zukunft wird diese Funktionalität zu den einzelnen GRETL-Jobs (d.h. pro Datenthema) wechseln. Nach einer Änderung des Modelles resp. bei einem neuen Modell muss der heute bestehende https://github.com/sogis/gretljobs/blob/main/agi_check_ili_export/datasets.groovy[GRETL-Job] angepasst werden.
+Eine Qualitätskontrolle der Daten wird durch den Publisher (momentan nur für öffentliche Daten) sichergestellt.
 
 === Modelländerungen
 
