@@ -47,7 +47,7 @@ Datenmodellname: Name des Stamm-/Kernmodelles.
 
 Kontext: Kontext für das die Konfigurationsdatei gilt. Z.B. IPW, Drainagen etc. Kann auch leer sein.
 
-#204:: Die Metaattribute `furtherInformation` (in der Regel der Link zur UML-Datei) und `technicalContact` (`mailto:agi@bd.so.chg`) sind im Header der Modelldatei (via UML-Editor) zu erfassen.
+#204:: Die Metaattribute `furtherInformation` (in der Regel der Link zur UML-Datei), `technicalContact` (`mailto:agi@bd.so.ch`), `title` und `shortDescription` sind im Header der Modelldatei (als Metaattribute zum Modell) zu erfassen.
 
 #205:: Die Änderungshistorie wird im Header der Modelldatei (via UML-Editor) dokumentiert.
 
@@ -141,6 +141,8 @@ INTERLIS 2.3;
 */
 !!@ technicalContact = "mailto:agi@bd.so.ch"; 
 !!@ furtherInformation = "http://geo.so.ch/models/ARP/SO_ARP_Nutzungsplanung_20171118.uml"; 
+!!@ shortDescription="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam."
+!!@ title="Lorem ipsum dolor sit"
 MODEL SO_ARP_Nutzungsplanung_20171118 (de) 
   AT "https://arp.so.ch" 
   VERSION "2017-11-18" = 
